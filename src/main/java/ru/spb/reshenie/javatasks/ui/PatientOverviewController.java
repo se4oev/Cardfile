@@ -6,6 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import ru.spb.reshenie.javatasks.MainApp;
 import ru.spb.reshenie.javatasks.entity.Patient;
 
 public class PatientOverviewController {
@@ -39,6 +40,12 @@ public class PatientOverviewController {
 
     @FXML
     private TableColumn<Patient, Image> finSourceColumn;
+
+    private MainApp mainApp;
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
     public void handleSearch() {
