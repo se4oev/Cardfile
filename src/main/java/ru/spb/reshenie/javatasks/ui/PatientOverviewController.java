@@ -1,13 +1,12 @@
 package ru.spb.reshenie.javatasks.ui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import ru.spb.reshenie.javatasks.MainApp;
-import ru.spb.reshenie.javatasks.entity.Patient;
+import ru.spb.reshenie.javatasks.entity.PatientDto;
 
 public class PatientOverviewController {
 
@@ -15,33 +14,38 @@ public class PatientOverviewController {
     private TextField searchField;
 
     @FXML
-    private TableView<Patient> patientTable;
+    private TableView<PatientDto> patientTable;
 
     @FXML
-    private TableColumn<Patient, Integer> cardNumberColumn;
+    private TableColumn<PatientDto, Integer> cardNumberColumn;
 
     @FXML
-    private TableColumn<Patient, String> snilsColumn;
+    private TableColumn<PatientDto, String> snilsColumn;
 
     @FXML
-    private TableColumn<Patient, String> sexColumn;
+    private TableColumn<PatientDto, String> sexColumn;
 
     @FXML
-    private TableColumn<Patient, String> fullnameColumn;
+    private TableColumn<PatientDto, String> fullnameColumn;
 
     @FXML
-    private TableColumn<Patient, String> birthdayColumn;
+    private TableColumn<PatientDto, String> birthdayColumn;
 
     @FXML
-    private TableColumn<Patient, String> ageColumn;
+    private TableColumn<PatientDto, String> ageColumn;
 
     @FXML
-    private TableColumn<Patient, String> policyColumn;
+    private TableColumn<PatientDto, String> policyColumn;
 
     @FXML
-    private TableColumn<Patient, Image> finSourceColumn;
+    private TableColumn<PatientDto, Image> finSourceColumn;
 
     private MainApp mainApp;
+
+    @FXML
+    public void initialize() {
+
+    }
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -49,6 +53,7 @@ public class PatientOverviewController {
 
     @FXML
     public void handleSearch() {
+        patientTable.setItems(mainApp.getPatientData());
     }
 
     @FXML

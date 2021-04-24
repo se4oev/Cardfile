@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import ru.spb.reshenie.javatasks.entity.Patient;
+import ru.spb.reshenie.javatasks.entity.PatientDto;
 import ru.spb.reshenie.javatasks.ui.PatientOverviewController;
 import ru.spb.reshenie.javatasks.ui.RootLayoutController;
 import ru.spb.reshenie.javatasks.utils.ImageUtil;
@@ -20,15 +20,19 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    private ObservableList<Patient> patientData = FXCollections.observableArrayList();
+    private ObservableList<PatientDto> patientData = FXCollections.observableArrayList();
+
+    public ObservableList<PatientDto> getPatientData() {
+        return patientData;
+    }
 
     public MainApp() {
-        patientData.add(new Patient(123213, "124-551-533-11", "Мужской", "Иванов И.И.",
-                "19.03.1982", "32 года", "Ресо - 323532", ImageUtil.cashImage));
-        patientData.add(new Patient(124443, "456-789-123-10", "Женский", "Иванова З.П.",
-                "17.11.1975", "31 год", "Альфа - 3341532", ImageUtil.cashImage));
-        patientData.add(new Patient(123213, "124-551-533-11", "Мужской", "Иванов И.И.",
-                "19.03.1982", "32 года", "Ресо - 323532", ImageUtil.cashImage));
+//        patientData.add(new Patient(123213, "Иванов Иван Иванович", "11.10.1992", 1,
+//                5553535, "Ресо", "12455153311", "34241", 1));
+//        patientData.add(new Patient(123213, "Петров Иван Иванович", "11.10.1992", 2,
+//                5553535, "Ресо", "12455153311", "34241", 2));
+//        patientData.add(new Patient(123213, "Сидоров Иван Иванович", "11.10.1992", 1,
+//                5553535, "Ресо", "12455153311", "34241", 3));
     }
 
     @Override
