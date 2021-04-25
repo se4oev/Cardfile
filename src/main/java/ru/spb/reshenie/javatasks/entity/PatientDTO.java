@@ -3,24 +3,22 @@ package ru.spb.reshenie.javatasks.entity;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
-import java.time.LocalDate;
+public class PatientDTO {
+    private StringProperty cardNumber;
+    private StringProperty snils;
+    private StringProperty sex;
+    private StringProperty fullname;
+    private StringProperty birthday;
+    private StringProperty age;
+    private StringProperty policy;
+    private ObjectProperty<Image> finSource;
 
-public class PatientDto {
-    private final IntegerProperty cardNumber;
-    private final StringProperty snils;
-    private final StringProperty sex;
-    private final StringProperty fullname;
-    private final StringProperty birthday;
-    private final StringProperty age;
-    private final StringProperty policy;
-    private final ObjectProperty<Image> finSource;
+    public PatientDTO() {
 
-    public PatientDto() {
-        this(null,null,null,null,null,null,null,null);
     }
 
-    public PatientDto(Integer cardNumber, String snils, String sex, String fullname, String birthday, String age, String policy, Image finSource) {
-        this.cardNumber = new SimpleIntegerProperty(cardNumber);
+    public PatientDTO(Long cardNumber, String snils, String sex, String fullname, String birthday, String age, String policy, Image finSource) {
+        this.cardNumber = new SimpleStringProperty(cardNumber.toString());
         this.snils = new SimpleStringProperty(snils);
         this.sex = new SimpleStringProperty(sex);
         this.fullname = new SimpleStringProperty(fullname);
@@ -30,15 +28,15 @@ public class PatientDto {
         this.finSource = new SimpleObjectProperty<Image>(finSource);
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber.get();
     }
 
-    public IntegerProperty cardNumberProperty() {
+    public StringProperty cardNumberProperty() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber.set(cardNumber);
     }
 
