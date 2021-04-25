@@ -6,6 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ru.spb.reshenie.javatasks.MainApp;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
@@ -41,7 +42,7 @@ public class PatientOverviewController {
     private TableColumn<PatientDTO, String> policyColumn;
 
     @FXML
-    private TableColumn<PatientDTO, Image> finSourceColumn;
+    private TableColumn<PatientDTO, ImageView> finSourceColumn;
 
     private MainApp mainApp;
 

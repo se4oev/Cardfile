@@ -1,6 +1,7 @@
 package ru.spb.reshenie.javatasks.utils;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ru.spb.reshenie.javatasks.entity.Patient;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
 
@@ -27,29 +28,20 @@ public class MappingUtil {
         String birthday = birthdayFormat(entity.getBirth_date());
         String age = ageFormat(entity.getBirth_date());
         String policy = policyFormat(entity.getSmo(), entity.getPolicy());
-        Image finSource = finSourceFormat(entity.getFin_source());
-
-//        dto.setCardNumber(String.valueOf(entity.getNum()));
-//        dto.setSnils(snilsFormat(entity.getSnils()));
-//        dto.setSex(sexFormat(entity.getSex()));
-//        dto.setFullname(fullnameFormat(entity.getFio()));
-//        dto.setBirthday(birthdayFormat(entity.getBirth_date()));
-//        dto.setAge(ageFormat(entity.getBirth_date()));
-//        dto.setPolicy(policyFormat(entity.getSmo(), entity.getPolicy()));
-//        dto.setFinSource(finSourceFormat(entity.getFin_source()));
+        ImageView finSource = finSourceFormat(entity.getFin_source());
 
         return new PatientDTO(cardNumber, snils, sex, fullname, birthday, age, policy, finSource);
     }
 
-    private static Image finSourceFormat(Integer fin_source) {
+    private static ImageView finSourceFormat(Integer fin_source) {
         if (fin_source == 1) {
-            return ImageUtil.omsImage;
+            return new ImageView(ImageUtil.omsImage);
         }
         if (fin_source == 2) {
-            return ImageUtil.dmsImage;
+            return new ImageView(ImageUtil.dmsImage);
         }
         if (fin_source == 3) {
-            return ImageUtil.cashImage;
+            return new ImageView(ImageUtil.cashImage);
         }
         return null;
     }
