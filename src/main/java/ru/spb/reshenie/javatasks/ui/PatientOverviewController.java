@@ -1,19 +1,26 @@
 package ru.spb.reshenie.javatasks.ui;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import ru.spb.reshenie.javatasks.MainApp;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
 import ru.spb.reshenie.javatasks.utils.MappingUtil;
 
+import java.util.Locale;
+
 public class PatientOverviewController {
 
+    @FXML
+    private AnchorPane rootPane;
     @FXML
     private TextField searchField;
 
@@ -46,6 +53,8 @@ public class PatientOverviewController {
 
     private MainApp mainApp;
 
+    private ObservableList<PatientDTO> listOfPatients;
+
     public PatientOverviewController() {
 
     }
@@ -60,12 +69,24 @@ public class PatientOverviewController {
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty());
         policyColumn.setCellValueFactory(cellData -> cellData.getValue().policyProperty());
         finSourceColumn.setCellValueFactory(cellData -> cellData.getValue().finSourceProperty());
+        finSourceColumn.setStyle("-fx-alignment: CENTER");
+
+        rootPane.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ESCAPE) {
+                    handleClear();
+                } else if (event.getCode() == KeyCode.ENTER) {
+                    handleSearch();
+                }
+            }
+        });
     }
 
     public void loadPatientsFromDb() {
         PatientDao patientDao = new PatientDao(mainApp.getConnection());
-
-        patientTable.setItems(FXCollections.observableArrayList(MappingUtil.mapToPatientDTOList(patientDao.getAll())));
+        listOfPatients = FXCollections.observableArrayList(MappingUtil.mapToPatientDTOList(patientDao.getAll()));
+        patientTable.setItems(listOfPatients);
     }
 
     public void setMainApp(MainApp mainApp) {
@@ -74,10 +95,31 @@ public class PatientOverviewController {
 
     @FXML
     public void handleSearch() {
-        //patientTable.setItems(mainApp.getPatientData());
+        String[] searchQuery = searchField.getText().split(" ");
+        FilteredList<PatientDTO> filteredData = new FilteredList<>(listOfPatients, p -> true);
+        filteredData.setPredicate(patient -> {
+            if (searchQuery == null || searchQuery.length == 0) {
+                return true;
+            }
+
+            for (String s : searchQuery) {
+                String lowerCaseFilter = s.toLowerCase();
+                if (patient.getFullname().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (patient.getPolicy().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+        patientTable.setItems(filteredData);
     }
 
     @FXML
     public void handleClear() {
+        searchField.clear();
+        patientTable.setItems(listOfPatients);
     }
 }
