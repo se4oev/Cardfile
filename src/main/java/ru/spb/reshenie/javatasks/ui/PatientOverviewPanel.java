@@ -17,7 +17,7 @@ import ru.spb.reshenie.javatasks.utils.MappingUtil;
 
 import java.util.Locale;
 
-public class PatientOverviewController {
+public class PatientOverviewPanel {
 
     @FXML
     private AnchorPane rootPane;
@@ -55,7 +55,7 @@ public class PatientOverviewController {
 
     private ObservableList<PatientDTO> listOfPatients;
 
-    public PatientOverviewController() {
+    public PatientOverviewPanel() {
 
     }
 
