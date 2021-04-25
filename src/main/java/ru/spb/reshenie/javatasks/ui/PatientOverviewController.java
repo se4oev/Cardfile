@@ -108,6 +108,16 @@ public class PatientOverviewController {
                     return true;
                 } else if (patient.getPolicy().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
+                } else if (patient.getCardNumber().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (patient.getSnils().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (patient.getSex().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (patient.getBirthday().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (patient.getAge().contains(lowerCaseFilter)) {
+                    return true;
                 }
             }
 
