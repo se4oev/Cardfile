@@ -6,6 +6,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -14,6 +16,7 @@ import ru.spb.reshenie.javatasks.MainApp;
 import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
+import ru.spb.reshenie.javatasks.utils.ImageUtil;
 import ru.spb.reshenie.javatasks.utils.MappingUtil;
 
 import java.util.Locale;
@@ -50,7 +53,7 @@ public class PatientOverviewPanel {
     private TableColumn<PatientDTO, String> policyColumn;
 
     @FXML
-    private TableColumn<PatientDTO, ImageView> finSourceColumn;
+    private TableColumn<PatientDTO, String> finSourceColumn;
 
     private ObservableList<PatientDTO> listOfPatients;
 
@@ -67,7 +70,11 @@ public class PatientOverviewPanel {
         birthdayColumn.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty());
         policyColumn.setCellValueFactory(cellData -> cellData.getValue().policyProperty());
+
         finSourceColumn.setCellValueFactory(cellData -> cellData.getValue().finSourceProperty());
+
+        finSourceColumn.setCellFactory(column -> new ImageTableCell());
+
         finSourceColumn.setStyle("-fx-alignment: CENTER");
 
         rootPane.setOnKeyReleased(new EventHandler<KeyEvent>() {

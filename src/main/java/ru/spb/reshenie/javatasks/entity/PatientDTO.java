@@ -1,8 +1,6 @@
 package ru.spb.reshenie.javatasks.entity;
 
 import javafx.beans.property.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class PatientDTO {
     private StringProperty cardNumber;
@@ -12,13 +10,13 @@ public class PatientDTO {
     private StringProperty birthday;
     private StringProperty age;
     private StringProperty policy;
-    private ObjectProperty<ImageView> finSource;
+    private StringProperty finSource;
 
     public PatientDTO() {
 
     }
 
-    public PatientDTO(Long cardNumber, String snils, String sex, String fullname, String birthday, String age, String policy, ImageView finSource) {
+    public PatientDTO(Long cardNumber, String snils, String sex, String fullname, String birthday, String age, String policy, Integer finSource) {
         this.cardNumber = new SimpleStringProperty(cardNumber.toString());
         this.snils = new SimpleStringProperty(snils);
         this.sex = new SimpleStringProperty(sex);
@@ -26,7 +24,7 @@ public class PatientDTO {
         this.birthday = new SimpleStringProperty(birthday);
         this.age = new SimpleStringProperty(age);
         this.policy = new SimpleStringProperty(policy);
-        this.finSource = new SimpleObjectProperty<ImageView>(finSource);
+        this.finSource = new SimpleStringProperty(String.valueOf(finSource));
     }
 
     public String getCardNumber() {
@@ -113,15 +111,15 @@ public class PatientDTO {
         this.policy.set(policy);
     }
 
-    public ImageView getFinSource() {
+    public String getFinSource() {
         return finSource.get();
     }
 
-    public ObjectProperty<ImageView> finSourceProperty() {
+    public StringProperty finSourceProperty() {
         return finSource;
     }
 
-    public void setFinSource(Image finSource) {
-        this.finSource.set(new ImageView(finSource));
+    public void setFinSource(Integer finSource) {
+        this.finSource.set(String.valueOf(finSource));
     }
 }

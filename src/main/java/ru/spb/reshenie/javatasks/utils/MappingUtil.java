@@ -35,23 +35,23 @@ public class MappingUtil {
         String birthday = birthdayFormat(entity.getBirth_date());
         String age = ageFormat(entity.getBirth_date());
         String policy = policyFormat(entity.getSmo(), entity.getPolicy());
-        ImageView finSource = finSourceFormat(entity.getFin_source());
+        Integer finSource = entity.getFin_source();
 
         return new PatientDTO(cardNumber, snils, sex, fullname, birthday, age, policy, finSource);
     }
 
-    private static ImageView finSourceFormat(Integer fin_source) {
-        if (fin_source == 1) {
-            return new ImageView(ImageUtil.omsImage);
-        }
-        if (fin_source == 2) {
-            return new ImageView(ImageUtil.dmsImage);
-        }
-        if (fin_source == 3) {
-            return new ImageView(ImageUtil.cashImage);
-        }
-        return null;
-    }
+//    private static ImageView finSourceFormat(Integer fin_source) {
+//        if (fin_source == 1) {
+//            return new ImageView(ImageUtil.omsImage);
+//        }
+//        if (fin_source == 2) {
+//            return new ImageView(ImageUtil.dmsImage);
+//        }
+//        if (fin_source == 3) {
+//            return new ImageView(ImageUtil.cashImage);
+//        }
+//        return null;
+//    }
 
     private static String policyFormat(String smo, String policy) {
         return smo + " - " + policy;
