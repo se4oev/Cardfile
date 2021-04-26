@@ -15,6 +15,7 @@ public class FullnameTableCell extends TableCell<PatientDTO, String > {
             setTooltip(null);
         } else {
             setText(fullnameFormat(item));
+            setStyle("-fx-font-weight: bold");
             setTooltip(new Tooltip(item));
         }
     }
