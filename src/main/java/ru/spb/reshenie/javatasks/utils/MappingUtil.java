@@ -5,10 +5,16 @@ import javafx.scene.image.ImageView;
 import ru.spb.reshenie.javatasks.entity.Patient;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MappingUtil {
 
@@ -52,12 +58,39 @@ public class MappingUtil {
     }
 
     private static String ageFormat(Date birth_date) {
-        Date date = new Date();
-        return new Date(date.getTime() - birth_date.getTime()).toString();
+        LocalDate currentDate = LocalDate.now();
+        LocalDate birthDate = Instant.ofEpochMilli(birth_date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        int years = 0;
+        if (birthDate != null) {
+            years = Period.between(birthDate, currentDate).getYears();
+        }
+
+        return appendYearsName(years);
+    }
+
+    private static String appendYearsName(int years) {
+        String output = "";
+        if (years >= 10 && years <= 20) {
+            output = String.valueOf(years) + " лет";
+        } else if (years % 10 == 0 || years % 10 == 5 || years % 10 == 6 || years % 10 == 7 ||
+                years % 10 == 8 || years % 10 == 9) {
+            output = String.valueOf(years) + " лет";
+        } else if (years % 10 == 1) {
+            output = String.valueOf(years) + " год";
+        } else if (years % 10 == 2 || years % 10 == 3 || years % 10 == 4) {
+            output = String.valueOf(years) + " года";
+        }
+        return output;
     }
 
     private static String birthdayFormat(Date birth_date) {
-        return birth_date.toString();
+        Date simpleDateFormat = null;
+        try {
+            simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(birth_date.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).format(simpleDateFormat);
     }
 
     private static String fullnameFormat(String fio) {
