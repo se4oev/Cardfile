@@ -59,24 +59,29 @@ public class PatientOverviewPanel {
     public void initialize() {
 
         patientTable.setRowFactory((param) -> new ColorRow());
+
         cardNumberColumn.setCellValueFactory(cellData -> cellData.getValue().cardNumberProperty());
         cardNumberColumn.setStyle("-fx-alignment: CENTER");
+
         snilsColumn.setCellValueFactory(cellData -> cellData.getValue().snilsProperty());
         snilsColumn.setStyle("-fx-alignment: CENTER");
+
         sexColumn.setCellValueFactory(cellData -> cellData.getValue().sexProperty());
         sexColumn.setStyle("-fx-alignment: CENTER");
+
         fullnameColumn.setCellValueFactory(cellData -> cellData.getValue().fullnameProperty());
         fullnameColumn.setCellFactory(column -> new FullnameTableCell());
+
         birthdayColumn.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
         birthdayColumn.setStyle("-fx-alignment: CENTER");
+
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty());
         ageColumn.setStyle("-fx-alignment: CENTER");
+
         policyColumn.setCellValueFactory(cellData -> cellData.getValue().policyProperty());
 
         finSourceColumn.setCellValueFactory(cellData -> cellData.getValue().finSourceProperty().asObject());
-
         finSourceColumn.setCellFactory(column -> new ImageTableCell());
-
         finSourceColumn.setStyle("-fx-alignment: CENTER");
 
         rootPane.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -104,7 +109,7 @@ public class PatientOverviewPanel {
         String[] searchQuery = searchField.getText().split(" ");
         FilteredList<PatientDTO> filteredData = new FilteredList<>(listOfPatients, p -> true);
         filteredData.setPredicate(patient -> {
-            if (searchQuery == null || searchQuery.length == 0) {
+            if (searchQuery.length == 0) {
                 return true;
             }
 

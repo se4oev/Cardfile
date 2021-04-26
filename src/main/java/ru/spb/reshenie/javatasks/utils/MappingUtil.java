@@ -1,7 +1,5 @@
 package ru.spb.reshenie.javatasks.utils;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import ru.spb.reshenie.javatasks.entity.Patient;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
 
