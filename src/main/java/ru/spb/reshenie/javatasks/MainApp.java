@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.ui.PatientOverviewPanel;
-import ru.spb.reshenie.javatasks.ui.RootLayout;
 import ru.spb.reshenie.javatasks.ui.SignInPanel;
 import ru.spb.reshenie.javatasks.utils.ImageUtil;
 
@@ -20,7 +19,6 @@ import java.sql.Connection;
 public class MainApp extends Application {
 
     private Stage primaryStage;
-    private BorderPane rootLayout;
     private static String[] dbURL;
     private String dbUser;
     private String dbPassword;
@@ -57,8 +55,6 @@ public class MainApp extends Application {
         DbConnector dbConnector = new DbConnector(dbURL, dbUser, dbPassword);
         connection = dbConnector.getConnection();
 
-        initRootLayout();
-
         showPatientOverview();
         loadPatientsFromDb();
 
@@ -93,32 +89,17 @@ public class MainApp extends Application {
         }
     }
 
-    public void initRootLayout() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("ui/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-
-            RootLayout controller = loader.getController();
-            controller.setMainApp(this);
-
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void showPatientOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("ui/PatientOverview.fxml"));
             AnchorPane patientOverview = (AnchorPane) loader.load();
-            rootLayout.setCenter(patientOverview);
+            Scene scene = new Scene(patientOverview);
+            primaryStage.setScene(scene);
 
             controller = loader.getController();
             controller.setMainApp(this);
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
