@@ -5,13 +5,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.spb.reshenie.javatasks.MainApp;
+import ru.spb.reshenie.javatasks.db.DbConnector;
 
 public class SignInPanel {
-    private MainApp mainApp;
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
 
     private Stage signInStage;
 
@@ -24,8 +20,9 @@ public class SignInPanel {
 
     @FXML
     private void handleConnect() {
-        mainApp.setDbUser(userField.getText());
-        mainApp.setDbPassword(passwordField.getText());
+        DbConnector dbConnector = DbConnector.getInstance();
+        dbConnector.setDbUser(userField.getText());
+        dbConnector.setDbPassword(passwordField.getText());
         signInStage.close();
     }
 

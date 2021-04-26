@@ -5,16 +5,44 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnector {
+    private static DbConnector instance;
     private static final String DB_DRIVER = "org.postgresql.Driver";
-    private static String dbType = "jdbc:postgresql://";
+    private static final String dbType = "jdbc:postgresql://";
     private String dbURL;
     private String dbUser;
     private String dbPassword;
 
-    public DbConnector(String[] dbURL, String dbUser, String dbPassword) {
-        this.dbURL = dbType + dbURL[1];
+    public String getDbURL() {
+        return dbURL;
+    }
+
+    public void setDbURL(String dbURL) {
+        this.dbURL = dbType + dbURL;
+    }
+
+    public String getDbUser() {
+        return dbUser;
+    }
+
+    public void setDbUser(String dbUser) {
         this.dbUser = dbUser;
+    }
+
+    public String getDbPassword() {
+        return dbPassword;
+    }
+
+    public void setDbPassword(String dbPassword) {
         this.dbPassword = dbPassword;
+    }
+
+    private DbConnector() {}
+
+    public static DbConnector getInstance() {
+        if (instance == null) {
+            instance = new DbConnector();
+        }
+        return instance;
     }
 
 

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,31 +13,15 @@ import ru.spb.reshenie.javatasks.ui.SignInPanel;
 import ru.spb.reshenie.javatasks.utils.ImageUtil;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 public class MainApp extends Application {
 
     private Stage primaryStage;
-    private static String[] dbURL;
-    private String dbUser;
-    private String dbPassword;
-    private Connection connection;
     private PatientOverviewPanel controller;
 
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public void setDbUser(String dbUser) {
-        this.dbUser = dbUser;
-    }
-
-    public void setDbPassword(String dbPassword) {
-        this.dbPassword = dbPassword;
-    }
-
     public static void main(String[] args) {
-        dbURL = args;
+        DbConnector dbConnector = DbConnector.getInstance();
+        dbConnector.setDbURL(args[1]);
         launch(args);
 
     }
@@ -52,13 +35,9 @@ public class MainApp extends Application {
 
         showSignInPanel();
 
-        DbConnector dbConnector = new DbConnector(dbURL, dbUser, dbPassword);
-        connection = dbConnector.getConnection();
-
         showPatientOverview();
-        loadPatientsFromDb();
 
-        connection.close();
+        loadPatientsFromDb();
     }
 
     private void loadPatientsFromDb() {
@@ -81,7 +60,6 @@ public class MainApp extends Application {
 
             SignInPanel controller = loader.getController();
             controller.setSignInPanelStage(signInStage);
-            controller.setMainApp(this);
 
             signInStage.showAndWait();
         } catch (IOException e) {
@@ -98,7 +76,6 @@ public class MainApp extends Application {
             primaryStage.setScene(scene);
 
             controller = loader.getController();
-            controller.setMainApp(this);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

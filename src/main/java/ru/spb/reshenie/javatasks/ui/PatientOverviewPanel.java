@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import ru.spb.reshenie.javatasks.MainApp;
+import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
 import ru.spb.reshenie.javatasks.utils.MappingUtil;
@@ -51,8 +52,6 @@ public class PatientOverviewPanel {
     @FXML
     private TableColumn<PatientDTO, ImageView> finSourceColumn;
 
-    private MainApp mainApp;
-
     private ObservableList<PatientDTO> listOfPatients;
 
     public PatientOverviewPanel() {
@@ -84,13 +83,11 @@ public class PatientOverviewPanel {
     }
 
     public void loadPatientsFromDb() {
-        PatientDao patientDao = new PatientDao(mainApp.getConnection());
+
+        PatientDao patientDao = new PatientDao(DbConnector.getInstance().getConnection());
         listOfPatients = FXCollections.observableArrayList(MappingUtil.mapToPatientDTOList(patientDao.getAll()));
         patientTable.setItems(listOfPatients);
-    }
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
     }
 
     @FXML
