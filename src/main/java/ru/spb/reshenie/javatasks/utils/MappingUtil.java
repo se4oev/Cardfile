@@ -31,7 +31,7 @@ public class MappingUtil {
         long cardNumber = entity.getNum();
         String snils = snilsFormat(entity.getSnils());
         String sex = sexFormat(entity.getSex());
-        String fullname = fullnameFormat(entity.getFio());
+        String fullname = entity.getFio();
         String birthday = birthdayFormat(entity.getBirth_date());
         String age = ageFormat(entity.getBirth_date());
         String policy = policyFormat(entity.getSmo(), entity.getPolicy());
@@ -39,19 +39,6 @@ public class MappingUtil {
 
         return new PatientDTO(cardNumber, snils, sex, fullname, birthday, age, policy, finSource);
     }
-
-//    private static ImageView finSourceFormat(Integer fin_source) {
-//        if (fin_source == 1) {
-//            return new ImageView(ImageUtil.omsImage);
-//        }
-//        if (fin_source == 2) {
-//            return new ImageView(ImageUtil.dmsImage);
-//        }
-//        if (fin_source == 3) {
-//            return new ImageView(ImageUtil.cashImage);
-//        }
-//        return null;
-//    }
 
     private static String policyFormat(String smo, String policy) {
         return smo + " - " + policy;
@@ -92,19 +79,6 @@ public class MappingUtil {
         }
         return new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).format(simpleDateFormat);
     }
-
-    private static String fullnameFormat(String fio) {
-        String[] fullname = fio.split(" ");
-        String result = fullname[0];
-        if (fullname.length >= 3) {
-            result += " " + fullname[1].charAt(0) + ". " + fullname[2].charAt(0) + "."; 
-        } else if (fullname.length == 2) {
-            result += " " + fullname[1].charAt(0) + ".";
-        }
-        return result;
-        
-    }
-
 
     private static String sexFormat(Integer sex) {
         if (sex == 1 || sex == 2) {

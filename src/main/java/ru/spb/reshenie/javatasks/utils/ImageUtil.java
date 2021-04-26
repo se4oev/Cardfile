@@ -9,12 +9,12 @@ public class ImageUtil {
     private static final String iconsPath = '/' +
             ImageUtil.class.getPackage().getName().replace('.', '/') + '/';
 
-    public static Image getFinSourceImage(String numOfIcon) {
-        if (numOfIcon.equals("1")) {
+    public static Image getFinSourceImage(Integer numOfIcon) {
+        if (numOfIcon == 1) {
             return createImage("oms_icon.png");
-        } else if (numOfIcon.equals("2")) {
+        } else if (numOfIcon == 2) {
             return createImage("dms_icon.png");
-        } else if (numOfIcon.equals("3")) {
+        } else if (numOfIcon == 3) {
             return createImage("cash_icon.png");
         }
         return null;

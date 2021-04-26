@@ -10,7 +10,7 @@ public class PatientDTO {
     private StringProperty birthday;
     private StringProperty age;
     private StringProperty policy;
-    private StringProperty finSource;
+    private IntegerProperty finSource;
 
     public PatientDTO() {
 
@@ -24,7 +24,7 @@ public class PatientDTO {
         this.birthday = new SimpleStringProperty(birthday);
         this.age = new SimpleStringProperty(age);
         this.policy = new SimpleStringProperty(policy);
-        this.finSource = new SimpleStringProperty(String.valueOf(finSource));
+        this.finSource = new SimpleIntegerProperty(finSource);
     }
 
     public String getCardNumber() {
@@ -111,15 +111,15 @@ public class PatientDTO {
         this.policy.set(policy);
     }
 
-    public String getFinSource() {
+    public Integer getFinSource() {
         return finSource.get();
     }
 
-    public StringProperty finSourceProperty() {
+    public IntegerProperty finSourceProperty() {
         return finSource;
     }
 
     public void setFinSource(Integer finSource) {
-        this.finSource.set(String.valueOf(finSource));
+        this.finSource.set(finSource);
     }
 }

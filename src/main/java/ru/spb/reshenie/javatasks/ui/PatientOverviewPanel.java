@@ -6,20 +6,14 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import ru.spb.reshenie.javatasks.MainApp;
 import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.PatientDTO;
-import ru.spb.reshenie.javatasks.utils.ImageUtil;
 import ru.spb.reshenie.javatasks.utils.MappingUtil;
 
-import java.util.Locale;
 
 public class PatientOverviewPanel {
 
@@ -53,7 +47,7 @@ public class PatientOverviewPanel {
     private TableColumn<PatientDTO, String> policyColumn;
 
     @FXML
-    private TableColumn<PatientDTO, String> finSourceColumn;
+    private TableColumn<PatientDTO, Integer> finSourceColumn;
 
     private ObservableList<PatientDTO> listOfPatients;
 
@@ -67,11 +61,12 @@ public class PatientOverviewPanel {
         snilsColumn.setCellValueFactory(cellData -> cellData.getValue().snilsProperty());
         sexColumn.setCellValueFactory(cellData -> cellData.getValue().sexProperty());
         fullnameColumn.setCellValueFactory(cellData -> cellData.getValue().fullnameProperty());
+        fullnameColumn.setCellFactory(column -> new FullnameTableCell());
         birthdayColumn.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty());
         policyColumn.setCellValueFactory(cellData -> cellData.getValue().policyProperty());
 
-        finSourceColumn.setCellValueFactory(cellData -> cellData.getValue().finSourceProperty());
+        finSourceColumn.setCellValueFactory(cellData -> cellData.getValue().finSourceProperty().asObject());
 
         finSourceColumn.setCellFactory(column -> new ImageTableCell());
 
