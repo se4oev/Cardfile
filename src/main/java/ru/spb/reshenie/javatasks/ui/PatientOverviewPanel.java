@@ -105,6 +105,12 @@ public class PatientOverviewPanel {
     }
 
     @FXML
+    public void handleRefresh() {
+        loadPatientsFromDb();
+        handleSearch();
+    }
+
+    @FXML
     public void handleSearch() {
         String[] searchQuery = searchField.getText().split(" ");
         FilteredList<PatientDTO> filteredData = new FilteredList<>(listOfPatients, p -> true);

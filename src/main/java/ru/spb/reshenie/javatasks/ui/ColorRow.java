@@ -11,7 +11,7 @@ public class ColorRow extends TableRow<PatientDTO> {
             setStyle("");
         } else {
             if (item.getSex().equals("Мужской")) {
-                setStyle("-fx-background-color: lightblue");
+                setStyle("-fx-background-color: lightskyblue");
             } else {
                 setStyle("-fx-background-color: lightcoral");
             }

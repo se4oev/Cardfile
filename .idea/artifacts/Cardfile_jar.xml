@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Cardfile:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Cardfile_jar</output-path>
+    <root id="archive" name="Cardfile.jar">
+      <element id="module-output" name="Cardfile" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/3.5.0/checker-qual-3.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.2.20/postgresql-42.2.20.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

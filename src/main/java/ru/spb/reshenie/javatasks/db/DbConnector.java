@@ -53,8 +53,7 @@ public class DbConnector {
             connection = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             System.out.println("Connection OK");
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            System.out.println("Connection ERROR");
+            return null;
         }
         return connection;
     }

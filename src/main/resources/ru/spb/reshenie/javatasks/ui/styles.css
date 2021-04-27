@@ -1,0 +1,12 @@
+/*.table-view .table-cell: selected {*/
+/*    -fx-background-color: lightgrey;*/
+/*    -fx-foregraunf-color: white;*/
+/*}*/
+/*.table-view:focused .table-row-cell:filled:focused:selected {*/
+/*    -fx-background-color: lightgrey;*/
+/*    -fx-foregraund-colod: white;*/
+/*}*/
+.table-row-cell:selected {
+    -fx-background-color: lightgrey;
+    -fx-foreground-color: white;
+}

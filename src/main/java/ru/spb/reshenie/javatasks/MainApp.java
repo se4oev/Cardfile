@@ -21,7 +21,7 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         DbConnector dbConnector = DbConnector.getInstance();
-        dbConnector.setDbURL(args[1]);
+        dbConnector.setDbURL(args[0]);
         launch(args);
 
     }
@@ -30,7 +30,6 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Картотека");
-
         this.primaryStage.getIcons().add(ImageUtil.cardfileImage);
 
         showSignInPanel();
@@ -73,6 +72,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("ui/PatientOverview.fxml"));
             AnchorPane patientOverview = (AnchorPane) loader.load();
             Scene scene = new Scene(patientOverview);
+            scene.getStylesheets().add(getClass().getResource("ui/styles.css").toExternalForm());
             primaryStage.setScene(scene);
 
             controller = loader.getController();

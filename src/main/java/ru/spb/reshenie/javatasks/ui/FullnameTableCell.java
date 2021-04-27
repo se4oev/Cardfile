@@ -29,6 +29,5 @@ public class FullnameTableCell extends TableCell<PatientDTO, String > {
             result += " " + fullname[1].charAt(0) + ".";
         }
         return result;
-
     }
 }

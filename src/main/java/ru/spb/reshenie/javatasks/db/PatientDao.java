@@ -20,7 +20,7 @@ public class PatientDao implements BaseDao<Patient> {
         List<Patient> listOfPatient = new ArrayList<Patient>();
         ResultSet resultSet = null;
         try (Statement statement = connection.createStatement()) {
-            resultSet = statement.executeQuery("SELECT * FROM java_tasks_patient");
+            resultSet = statement.executeQuery("SELECT * FROM java_tasks_patient ORDER BY id DESC");
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
                 String fio = resultSet.getString("fio");
