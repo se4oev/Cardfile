@@ -21,7 +21,11 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         DbConnector dbConnector = DbConnector.getInstance();
-        dbConnector.setDbURL(args[0]);
+        if (args.length == 1) {
+            dbConnector.setDbURL(args[0]);
+        } else if (args.length > 1) {
+            dbConnector.setDbURL(args[1]);
+        }
         launch(args);
 
     }

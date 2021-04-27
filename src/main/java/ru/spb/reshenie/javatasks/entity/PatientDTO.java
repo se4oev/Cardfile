@@ -3,6 +3,7 @@ package ru.spb.reshenie.javatasks.entity;
 import javafx.beans.property.*;
 
 public class PatientDTO {
+    private long id;
     private StringProperty cardNumber;
     private StringProperty snils;
     private StringProperty sex;
@@ -16,7 +17,8 @@ public class PatientDTO {
 
     }
 
-    public PatientDTO(Long cardNumber, String snils, String sex, String fullname, String birthday, String age, String policy, Integer finSource) {
+    public PatientDTO(long id, Long cardNumber, String snils, String sex, String fullname, String birthday, String age, String policy, Integer finSource) {
+        this.id = id;
         this.cardNumber = new SimpleStringProperty(cardNumber.toString());
         this.snils = new SimpleStringProperty(snils);
         this.sex = new SimpleStringProperty(sex);
@@ -25,6 +27,14 @@ public class PatientDTO {
         this.age = new SimpleStringProperty(age);
         this.policy = new SimpleStringProperty(policy);
         this.finSource = new SimpleIntegerProperty(finSource);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getCardNumber() {

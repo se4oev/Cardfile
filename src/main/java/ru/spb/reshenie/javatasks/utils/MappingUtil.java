@@ -25,7 +25,7 @@ public class MappingUtil {
     }
 
     public static PatientDTO mapToPatientDTO(Patient entity) {
-
+        long id = entity.getId();
         long cardNumber = entity.getNum();
         String snils = snilsFormat(entity.getSnils());
         String sex = sexFormat(entity.getSex());
@@ -35,7 +35,7 @@ public class MappingUtil {
         String policy = policyFormat(entity.getSmo(), entity.getPolicy());
         Integer finSource = entity.getFin_source();
 
-        return new PatientDTO(cardNumber, snils, sex, fullname, birthday, age, policy, finSource);
+        return new PatientDTO(id, cardNumber, snils, sex, fullname, birthday, age, policy, finSource);
     }
 
     private static String policyFormat(String smo, String policy) {
