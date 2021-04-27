@@ -72,7 +72,6 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("ui/PatientOverview.fxml"));
             AnchorPane patientOverview = (AnchorPane) loader.load();
             Scene scene = new Scene(patientOverview);
-            scene.getStylesheets().add(getClass().getResource("ui/styles.css").toExternalForm());
             primaryStage.setScene(scene);
 
             controller = loader.getController();

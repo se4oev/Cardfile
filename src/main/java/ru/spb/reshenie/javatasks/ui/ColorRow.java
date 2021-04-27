@@ -17,4 +17,13 @@ public class ColorRow extends TableRow<PatientDTO> {
             }
         }
     }
+    @Override
+    public void updateSelected(boolean selected) {
+        super.updateSelected(selected);
+        if(isSelected()) {
+            setStyle("-fx-background-color: lightgrey");
+        } else {
+            getTableView().refresh();
+        }
+    }
 }
