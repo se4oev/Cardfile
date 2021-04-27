@@ -50,7 +50,7 @@ public class MainApp extends Application {
             AnchorPane pane = (AnchorPane) loader.load();
 
             Stage signInStage = new Stage();
-            signInStage.setTitle("Войдите");
+            signInStage.setTitle("Авторизация");
             signInStage.initStyle(StageStyle.UNDECORATED);
             signInStage.initModality(Modality.WINDOW_MODAL);
             signInStage.initOwner(primaryStage);
