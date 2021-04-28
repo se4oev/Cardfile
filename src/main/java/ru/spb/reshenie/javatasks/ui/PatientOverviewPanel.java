@@ -145,6 +145,10 @@ public class PatientOverviewPanel {
                     patientTable.getSelectionModel().select(0);
                 }
             }
+        } else {
+            if (patientTable.getItems() != null && patientTable.getItems().size() > 0) {
+                patientTable.getSelectionModel().select(0);
+            }
         }
 
     }
@@ -207,6 +211,10 @@ public class PatientOverviewPanel {
                 else
                     patientTable.getSelectionModel().select(0);
 
+            }
+        } else {
+            if (patientTable.getItems() != null && patientTable.getItems().size() > 0) {
+                patientTable.getSelectionModel().select(0);
             }
         }
     }

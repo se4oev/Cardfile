@@ -24,7 +24,7 @@ public class ColorRow extends TableRow<PatientDTO> {
     public void updateSelected(boolean selected) {
         super.updateSelected(selected);
         if(isSelected()) {
-            setStyle("-fx-background-color: rgba(169, 169, 169, 0.8)");
+            setStyle("-fx-background-color: rgba(33, 165, 209, 1.0)");
         } else {
             getTableView().refresh();
         }
