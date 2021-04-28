@@ -20,8 +20,8 @@
                   <HBox alignment="CENTER" prefHeight="83.0" prefWidth="988.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <TextField fx:id="searchField" prefWidth="500.0" promptText="Введите строку для поиска..." />
-                        <Button mnemonicParsing="false" onAction="#handleSearch" prefWidth="100.0" text="Поиск" />
-                        <Button mnemonicParsing="false" onAction="#handleClear" prefWidth="100.0" text="Очистить" />
+                        <Button fx:id="btnSearch" mnemonicParsing="false" prefWidth="100.0" text="Поиск" />
+                        <Button fx:id="btnClear" mnemonicParsing="false" prefWidth="100.0" text="Очистить" />
                      </children>
                   </HBox>
                </children>

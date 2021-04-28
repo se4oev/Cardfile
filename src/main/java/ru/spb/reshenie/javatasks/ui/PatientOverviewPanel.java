@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.db.PatientDao;
@@ -19,6 +19,7 @@ public class PatientOverviewPanel {
 
     @FXML
     private AnchorPane rootPane;
+
     @FXML
     private TextField searchField;
 
@@ -49,7 +50,16 @@ public class PatientOverviewPanel {
     @FXML
     private TableColumn<PatientDTO, Integer> finSourceColumn;
 
+    @FXML
+    private Button btnSearch;
+
+    @FXML
+    private Button btnClear;
+
     private ObservableList<PatientDTO> listOfPatients;
+
+    private PatientDTO selectedPatient;
+    private int selectedIndex;
 
     public PatientOverviewPanel() {
 
@@ -58,7 +68,30 @@ public class PatientOverviewPanel {
     @FXML
     public void initialize() {
 
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                patientTable.setItems(listOfPatients);
+            }
+        });
+
+        initButton(btnSearch, event -> {
+            if (event.isPrimaryButtonDown())
+                if (searchField.getText().length() > 0)
+                    handleSearch();
+        });
+
+        initButton(btnClear, event -> {
+            if (event.isPrimaryButtonDown())
+                if (searchField.getText().length() > 0)
+                    handleClear();
+        });
+
         patientTable.setRowFactory((param) -> new ColorRow());
+        patientTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            selectedPatient = patientTable.getSelectionModel().getSelectedItem();
+            selectedIndex = patientTable.getSelectionModel().getSelectedIndex() > 0 ?
+                    patientTable.getSelectionModel().getSelectedIndex() : -1;
+        });
 
         cardNumberColumn.setCellValueFactory(cellData -> cellData.getValue().cardNumberProperty());
         cardNumberColumn.setStyle("-fx-alignment: CENTER");
@@ -84,16 +117,17 @@ public class PatientOverviewPanel {
         finSourceColumn.setCellFactory(column -> new ImageTableCell());
         finSourceColumn.setStyle("-fx-alignment: CENTER");
 
-        rootPane.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ESCAPE) {
-                    handleClear();
-                } else if (event.getCode() == KeyCode.ENTER) {
-                    handleSearch();
-                }
+        rootPane.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                handleClear();
+            } else if (event.getCode() == KeyCode.ENTER) {
+                handleSearch();
             }
         });
+    }
+
+    private void initButton(Button button, EventHandler<MouseEvent> handler) {
+        button.addEventFilter(MouseEvent.MOUSE_PRESSED, handler);
     }
 
     public void loadPatientsFromDb() {
@@ -101,6 +135,17 @@ public class PatientOverviewPanel {
         PatientDao patientDao = new PatientDao(DbConnector.getInstance().getConnection());
         listOfPatients = FXCollections.observableArrayList(MappingUtil.mapToPatientDTOList(patientDao.getAll()));
         patientTable.setItems(listOfPatients);
+        if (selectedPatient != null) {
+            if (patientTable.getItems().contains(selectedPatient)) {
+                patientTable.getSelectionModel().select(selectedPatient);
+            } else {
+                if (patientTable.getItems().size() >= selectedIndex) {
+                    patientTable.getSelectionModel().select(selectedIndex);
+                } else {
+                    patientTable.getSelectionModel().select(0);
+                }
+            }
+        }
 
     }
 
@@ -141,12 +186,28 @@ public class PatientOverviewPanel {
             return false;
         });
 
-        patientTable.setItems(filteredData);
+        setPatientItems(filteredData);
+
     }
 
     @FXML
     public void handleClear() {
         searchField.clear();
+        setPatientItems(listOfPatients);
+    }
+
+    private void setPatientItems(ObservableList<PatientDTO> listOfPatients) {
         patientTable.setItems(listOfPatients);
+        if(selectedPatient != null) {
+            if(patientTable.getItems().contains(selectedPatient)) {
+                patientTable.getSelectionModel().select(selectedPatient);
+            } else {
+                if(patientTable.getItems().size() >= selectedIndex)
+                    patientTable.getSelectionModel().select(selectedIndex);
+                else
+                    patientTable.getSelectionModel().select(0);
+
+            }
+        }
     }
 }

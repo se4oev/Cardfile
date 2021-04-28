@@ -47,7 +47,7 @@ public class DbConnector {
 
 
     public Connection getConnection() {
-        Connection connection = null;
+        Connection connection;
         try {
             Class.forName(DB_DRIVER);
             connection = DriverManager.getConnection(dbURL, dbUser, dbPassword);
