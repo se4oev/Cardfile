@@ -15,6 +15,9 @@ public class PatientDao{
         this.connection = connection;
     }
 
+    public PatientDao(String dbURL, String text, String text1) {
+    }
+
     public List<Patient> getAll() {
         List<Patient> listOfPatient = new ArrayList<Patient>();
         ResultSet resultSet = null;

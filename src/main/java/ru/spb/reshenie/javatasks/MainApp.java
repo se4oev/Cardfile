@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.ui.PatientOverviewPanel;
 import ru.spb.reshenie.javatasks.ui.SignInPanel;
 import ru.spb.reshenie.javatasks.utils.ImageUtil;
