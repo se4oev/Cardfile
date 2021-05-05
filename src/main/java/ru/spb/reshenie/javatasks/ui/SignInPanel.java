@@ -7,7 +7,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.spb.reshenie.javatasks.MainApp;
-import ru.spb.reshenie.javatasks.db.IBaseDao;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 
 public class SignInPanel {

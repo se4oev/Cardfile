@@ -12,35 +12,24 @@ public class PatientDao implements IBaseDao {
     private Connection connection;
     private static final String DB_DRIVER = "org.postgresql.Driver";
     private static final String dbType = "jdbc:postgresql://";
-    private String dbURL;
-    private String dbUser;
-    private String dbPassword;
 
     public Connection getConnection() {
         return connection;
     }
 
     public PatientDao(String dbURL, String dbUser, String dbPassword) {
-        System.out.println("Конструктор пациентДАО");
-        this.dbURL = dbType + dbURL;
-        this.dbUser = dbUser;
-        this.dbPassword = dbPassword;
-        System.out.println(this.dbURL);
-        System.out.println(this.dbUser);
-        System.out.println(this.dbPassword);
+        String dbURL1 = dbType + dbURL;
         try {
             Class.forName(DB_DRIVER);
-            System.out.println("Класс фор нэйм");
-            connection = DriverManager.getConnection(this.dbURL, this.dbUser, this.dbPassword);
-            System.out.println("Попытка конекшна");
+            connection = DriverManager.getConnection(dbURL1, dbUser, dbPassword);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
     public List<Patient> getAll() {
-        List<Patient> listOfPatient = new ArrayList<Patient>();
-        ResultSet resultSet = null;
+        List<Patient> listOfPatient = new ArrayList<>();
+        ResultSet resultSet;
         try (Statement statement = connection.createStatement()) {
             resultSet = statement.executeQuery("SELECT * FROM java_tasks_patient ORDER BY id DESC");
             while (resultSet.next()) {

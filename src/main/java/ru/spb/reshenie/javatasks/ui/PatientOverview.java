@@ -12,7 +12,7 @@ import ru.spb.reshenie.javatasks.entity.Patient;
 
 public class PatientOverview {
 
-    private PatientDao patientDao;
+    private final PatientDao patientDao;
 
     @FXML
     private AnchorPane rootPane;

@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ru.spb.reshenie.javatasks.db.IBaseDao;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.ui.PatientOverview;
 import ru.spb.reshenie.javatasks.ui.SignInPanel;
@@ -38,7 +37,7 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Картотека");
         this.primaryStage.getIcons().add(ImageUtil.cardfileImage);
@@ -52,7 +51,7 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("ui/SignInPanel.fxml"));
-            AnchorPane pane = (AnchorPane) loader.load();
+            AnchorPane pane = loader.load();
 
             Stage signInStage = new Stage();
             signInStage.setTitle("Авторизация");
