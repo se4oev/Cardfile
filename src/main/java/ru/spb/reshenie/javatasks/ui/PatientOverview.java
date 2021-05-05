@@ -7,12 +7,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.Patient;
 
 public class PatientOverview {
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     private final PatientDao patientDao;
+
+    private ObservableList<Patient> listOfPatients;
+
+    private Patient selectedPatient;
+
+    private int selectedIndex;
 
     @FXML
     private AnchorPane rootPane;
@@ -46,11 +56,6 @@ public class PatientOverview {
 
     @FXML
     private TableColumn<Patient, Integer> finSourceColumn;
-
-    private ObservableList<Patient> listOfPatients;
-
-    private Patient selectedPatient;
-    private int selectedIndex;
 
     public PatientOverview(PatientDao patientDao) {
         this.patientDao = patientDao;
@@ -110,7 +115,6 @@ public class PatientOverview {
     public void loadPatientsFromDb() {
         listOfPatients = FXCollections.observableArrayList(patientDao.getAll());
         setPatients(listOfPatients);
-
     }
 
     private void setPatients(ObservableList<Patient> listOfPatients) {

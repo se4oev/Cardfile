@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.Objects;
 
 public class MainApp extends Application {
-    private final Logger logger = LoggerFactory.getLogger(MainApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
     private Stage primaryStage;
     private static String dbURL;
     private IBaseDao baseDao;
@@ -30,17 +30,20 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
+        logger.info("Application started...");
         if (args.length == 1) {
             dbURL = args[0];
+            logger.info("Received argument: {}", args[0]);
         } else if (args.length > 1) {
             dbURL = args[1];
+            logger.info("Received argument: {}", args[1]);
         }
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Application started...");
+        logger.info("Launch start method");
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Картотека");
         this.primaryStage.getIcons().add(ImageUtil.cardfileImage);
@@ -71,7 +74,8 @@ public class MainApp extends Application {
 
             signInStage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to start sign in panel", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -84,7 +88,8 @@ public class MainApp extends Application {
 
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Failed to start patient overview", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -99,10 +104,13 @@ public class MainApp extends Application {
             fxmlLoader.setLocation(url);
             fxmlLoader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to load PatientOverview panel", e);
+            throw new RuntimeException(e);
         }
-        if(patientOverview == null || patientOverview.getRootPane() == null)
-            throw new RuntimeException("Панель не найдена");
+        if(patientOverview == null || patientOverview.getRootPane() == null) {
+            logger.error("Panel not found");
+            throw new RuntimeException("Panel not found");
+        }
         patientOverview.getRootPane().getProperties().put(new Object(), patientOverview);
         return fxmlLoader.getController();
     }
