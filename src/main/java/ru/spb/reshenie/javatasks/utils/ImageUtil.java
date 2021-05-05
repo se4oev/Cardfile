@@ -15,7 +15,7 @@ public class ImageUtil {
         } else if (numOfIcon == 3) {
             return createImage("cash_icon.png");
         }
-        return null;
+        return createImage("unknown_icon.png");
     }
 
     private static Image createImage(String path) {

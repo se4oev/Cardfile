@@ -1,5 +1,7 @@
 package ru.spb.reshenie.javatasks.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spb.reshenie.javatasks.entity.Patient;
 
 import java.text.ParseException;
@@ -9,6 +11,7 @@ import java.time.Period;
 import java.util.Locale;
 
 public class PatientMapper {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private final Patient patient;
 
     public PatientMapper(long id, String fio, LocalDate birthDate, int sex, int num,
@@ -44,7 +47,7 @@ public class PatientMapper {
         if (sex == 1 || sex == 2) {
             return sex == 1 ? "Мужской" : "Женский";
         } else {
-            return null;
+            return "Не указан";
         }
     }
 
@@ -53,7 +56,7 @@ public class PatientMapper {
         try {
             simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(birthDate.toString());
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error("Failed to parse date", e);
         }
         return new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).format(simpleDateFormat);
     }

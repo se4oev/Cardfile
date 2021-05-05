@@ -11,14 +11,14 @@ public class PgDao implements IBaseDao {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private Connection connection;
     private static final String DB_DRIVER = "org.postgresql.Driver";
-    private static final String dbType = "jdbc:postgresql://";
+    private static final String DB_TYPE = "jdbc:postgresql://";
 
     public Connection getConnection() {
         return connection;
     }
 
     public PgDao(String dbURL, String dbUser, String dbPassword) {
-        String dbURL1 = dbType + dbURL;
+        String dbURL1 = DB_TYPE + dbURL;
         try {
             logger.info("Try to connect DB...");
             Class.forName(DB_DRIVER);
