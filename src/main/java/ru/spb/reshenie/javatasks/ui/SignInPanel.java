@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.spb.reshenie.javatasks.MainApp;
 import ru.spb.reshenie.javatasks.db.IBaseDao;
-import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.db.PgDao;
 
 public class SignInPanel {
@@ -30,8 +29,10 @@ public class SignInPanel {
     private TextField userField;
     @FXML
     private PasswordField passwordField;
+
     @FXML
-    public void initialize() {}
+    public void initialize() {
+    }
 
     @FXML
     private void handleConnect() {

@@ -12,9 +12,9 @@ public class ColorRow extends TableRow<Patient> {
             setStyle("");
         } else {
             if (item.getSex().equals("Мужской")) {
-                setStyle("-fx-background-color: rgba(135, 206, 250, 0.2)");
+                this.setId("man");
             } else {
-                setStyle("-fx-background-color: rgba(240, 128, 128, 0.2)");
+                this.setId("woman");
             }
         }
     }

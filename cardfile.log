@@ -24,3 +24,361 @@
 05.05.2021 21:40:55.030 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Query execute successful. Number of patients 20
 05.05.2021 21:41:02.168 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
 05.05.2021 21:41:02.177 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Query execute successful. Number of patients 20
+05.05.2021 21:57:21.556 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 21:57:21.559 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 21:57:21.586 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 21:57:21.611 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 21:57:25.926 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 21:57:26.094 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 21:57:26.095 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 21:57:26.110 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 21:57:26.247 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 21:57:26.252 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 21:57:26.256 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 21:57:26.295 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Query execute successful. Number of patients 20
+05.05.2021 22:02:48.963 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 22:02:48.966 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 22:02:48.993 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 22:02:49.019 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 22:02:53.069 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 22:02:53.230 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 22:02:53.230 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 22:02:53.251 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 22:02:53.384 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 22:02:53.389 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 22:02:53.395 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 22:02:53.435 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Query execute successful. Number of patients 20
+05.05.2021 22:02:57.803 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Trying to close connection
+05.05.2021 22:12:31.897 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 22:12:31.900 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 22:12:31.933 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 22:12:31.960 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 22:12:36.732 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 22:12:36.890 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 22:12:36.890 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 22:12:36.908 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 22:12:37.042 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 22:12:37.046 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 22:12:37.051 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 22:12:37.074 [JavaFX Application Thread] ERROR  r.s.r.j.d.PatientDao - Failed to execute query
+org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:109)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:105)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+05.05.2021 22:12:37.075 [JavaFX Application Thread] ERROR  r.s.r.j.MainApp - Failed to load PatientOverview panel
+javafx.fxml.LoadException: 
+/D:/Java/Projects/Cardfile/target/classes/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml
+
+	at javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2601)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2571)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	... 14 common frames omitted
+Caused by: java.lang.RuntimeException: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:48)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:109)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:105)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	... 26 common frames omitted
+05.05.2021 22:12:37.076 [JavaFX Application Thread] ERROR  r.s.r.j.MainApp - Failed to start patient overview
+java.lang.RuntimeException: javafx.fxml.LoadException: 
+/D:/Java/Projects/Cardfile/target/classes/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml
+
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:123)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: javafx.fxml.LoadException: 
+/D:/Java/Projects/Cardfile/target/classes/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml
+
+	at javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2601)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2571)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	... 11 common frames omitted
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	... 14 common frames omitted
+Caused by: java.lang.RuntimeException: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:48)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:109)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:105)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	... 26 common frames omitted
+05.05.2021 22:12:37.077 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Trying to close connection
+05.05.2021 22:12:37.078 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Connection closed successful
+05.05.2021 22:13:42.690 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 22:13:42.694 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 22:13:42.722 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 22:13:42.747 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 22:13:46.380 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 22:13:46.539 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 22:13:46.540 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 22:13:46.559 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 22:13:46.688 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 22:13:46.693 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 22:13:46.698 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 22:13:46.716 [JavaFX Application Thread] ERROR  r.s.r.j.d.PatientDao - Failed to execute query
+org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:109)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:105)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+05.05.2021 22:13:57.991 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Trying to close connection
+05.05.2021 22:13:57.992 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Connection closed successful
+05.05.2021 22:27:16.771 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 22:27:16.774 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 22:27:16.801 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 22:27:16.825 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 22:27:21.083 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 22:27:21.245 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 22:27:21.245 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 22:27:21.265 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 22:27:21.425 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 22:27:21.430 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 22:27:21.435 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 22:27:21.454 [JavaFX Application Thread] ERROR  r.s.r.j.d.PatientDao - Failed to execute query
+org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:112)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:107)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+05.05.2021 22:27:21.454 [JavaFX Application Thread] ERROR  r.s.r.j.u.PatientOverview - Failed to load patients
+java.sql.SQLException: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:48)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:112)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:107)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	... 26 common frames omitted
+05.05.2021 22:27:44.023 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Trying to close connection
+05.05.2021 22:27:44.024 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Connection closed successful
+05.05.2021 22:29:27.901 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 22:29:27.903 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 22:29:27.934 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 22:29:27.964 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 22:29:32.562 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 22:29:32.725 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 22:29:32.725 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 22:29:32.743 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 22:29:32.885 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 22:29:32.890 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 22:29:32.894 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 22:29:32.911 [JavaFX Application Thread] ERROR  r.s.r.j.d.PatientDao - Failed to execute query
+org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:112)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:107)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+05.05.2021 22:29:32.911 [JavaFX Application Thread] ERROR  r.s.r.j.u.PatientOverview - Failed to load patients
+java.sql.SQLException: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:48)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.loadPatientsFromDb(PatientOverview.java:112)
+	at ru.spb.reshenie.javatasks.ui.PatientOverview.initialize(PatientOverview.java:107)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2566)
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441)
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409)
+	at ru.spb.reshenie.javatasks.MainApp.loadMainPane(MainApp.java:120)
+	at ru.spb.reshenie.javatasks.MainApp.showPatientOverview(MainApp.java:98)
+	at ru.spb.reshenie.javatasks.MainApp.start(MainApp.java:54)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+	at com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:185)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.postgresql.util.PSQLException: Колонки sex не найдено в этом ResultSet’’е.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2748)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2626)
+	at ru.spb.reshenie.javatasks.db.PatientDao.getAll(PatientDao.java:35)
+	... 26 common frames omitted
+05.05.2021 22:29:42.794 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Trying to close connection
+05.05.2021 22:29:42.795 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Connection closed successful

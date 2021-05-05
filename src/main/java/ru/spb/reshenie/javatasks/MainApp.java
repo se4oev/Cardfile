@@ -17,6 +17,7 @@ import ru.spb.reshenie.javatasks.utils.ImageUtil;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class MainApp extends Application {
@@ -51,6 +52,18 @@ public class MainApp extends Application {
         showSignInPanel();
         logger.info("Login successfull, show patient overview");
         showPatientOverview();
+    }
+
+    @Override
+    public void stop() {
+        try {
+            logger.info("Trying to close connection");
+            baseDao.getConnection().close();
+            logger.info("Connection closed successful");
+        } catch (SQLException e) {
+            logger.error("Failed to close connection", e);
+            throw new RuntimeException(e);
+        }
     }
 
     private void showSignInPanel() {

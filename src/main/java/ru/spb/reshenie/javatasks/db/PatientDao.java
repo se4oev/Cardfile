@@ -18,36 +18,32 @@ public class PatientDao {
         this.baseDao = baseDao;
     }
 
-    public List<Patient> getAll() {
+    public List<Patient> getAll() throws SQLException {
         List<Patient> listOfPatient = new ArrayList<>();
         ResultSet resultSet;
-        try (Statement statement = baseDao.getConnection().createStatement()) {
-            logger.info("Trying to execute query...");
-            resultSet = statement.executeQuery("SELECT * FROM java_tasks_patient ORDER BY id DESC");
-            while (resultSet.next()) {
-                long id = resultSet.getLong("id");
-                String fio = resultSet.getString("fio");
+        logger.info("Trying to execute query...");
+        Statement statement = baseDao.getConnection().createStatement();
+        resultSet = statement.executeQuery("SELECT * FROM java_tasks_patient ORDER BY id DESC");
+        while (resultSet.next()) {
+            long id = resultSet.getLong("id");
+            String fio = resultSet.getString("fio");
 
-                String[] birthDay = resultSet.getDate("birth_date").toString().split("-");
-                LocalDate birthDate = LocalDate.of(Integer.parseInt(birthDay[0]),
+            String[] birthDay = resultSet.getDate("birth_date").toString().split("-");
+            LocalDate birthDate = LocalDate.of(Integer.parseInt(birthDay[0]),
                     Integer.parseInt(birthDay[1]), Integer.parseInt(birthDay[2]));
 
-                int sex = resultSet.getInt("sex");
-                int num = resultSet.getInt("num");
-                String smo = resultSet.getString("smo");
-                String snils = resultSet.getString("snils");
-                String policy = resultSet.getString("policy");
-                int finSource = resultSet.getInt("fin_source");
-                PatientMapper mapper = new PatientMapper(id, fio, birthDate, sex, num, smo, snils, policy, finSource);
+            int sex = resultSet.getInt("sex");
+            int num = resultSet.getInt("num");
+            String smo = resultSet.getString("smo");
+            String snils = resultSet.getString("snils");
+            String policy = resultSet.getString("policy");
+            int finSource = resultSet.getInt("fin_source");
+            PatientMapper mapper = new PatientMapper(id, fio, birthDate, sex, num, smo, snils, policy, finSource);
 
-                listOfPatient.add(mapper.getPatient());
-            }
-            logger.info("Query execute successful. Number of patients {}", listOfPatient.size());
-        } catch (SQLException e) {
-            logger.error("Failed to execute query", e);
-            throw new RuntimeException(e);
+            listOfPatient.add(mapper.getPatient());
         }
+        statement.close();
+        logger.info("Query execute successful. Number of patients {}", listOfPatient.size());
         return listOfPatient;
     }
-
 }

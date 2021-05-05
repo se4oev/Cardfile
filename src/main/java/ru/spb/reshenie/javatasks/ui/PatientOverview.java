@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.Patient;
 
+import java.sql.SQLException;
+
 public class PatientOverview {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -106,7 +108,16 @@ public class PatientOverview {
     }
 
     public void loadPatientsFromDb() {
-        listOfPatients = FXCollections.observableArrayList(patientDao.getAll());
+        try {
+            listOfPatients = FXCollections.observableArrayList(patientDao.getAll());
+        } catch (SQLException e) {
+            logger.error("Failed to load patients", e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Failed to load data");
+            alert.setHeaderText("Не удалось получить список пациентов");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
         setPatients(listOfPatients);
     }
 
