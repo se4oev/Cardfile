@@ -1,14 +1,12 @@
 package ru.spb.reshenie.javatasks.ui;
 
-import javafx.css.PseudoClass;
 import javafx.scene.control.TableRow;
-import javafx.scene.paint.Color;
-import ru.spb.reshenie.javatasks.entity.PatientDTO;
+import ru.spb.reshenie.javatasks.entity.Patient;
 
-public class ColorRow extends TableRow<PatientDTO> {
+public class ColorRow extends TableRow<Patient> {
 
     @Override
-    protected void updateItem(PatientDTO item, boolean empty) {
+    protected void updateItem(Patient item, boolean empty) {
         super.updateItem(item, empty);
         if (item == null || empty) {
             setStyle("");

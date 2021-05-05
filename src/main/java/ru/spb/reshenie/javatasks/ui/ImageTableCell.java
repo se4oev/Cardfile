@@ -3,10 +3,10 @@ package ru.spb.reshenie.javatasks.ui;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
-import ru.spb.reshenie.javatasks.entity.PatientDTO;
+import ru.spb.reshenie.javatasks.entity.Patient;
 import ru.spb.reshenie.javatasks.utils.ImageUtil;
 
-public class ImageTableCell extends TableCell<PatientDTO, Integer> {
+public class ImageTableCell extends TableCell<Patient, Integer> {
 
     @Override
     protected void updateItem(Integer item, boolean empty) {

@@ -2,10 +2,10 @@ package ru.spb.reshenie.javatasks.ui;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.Tooltip;
-import ru.spb.reshenie.javatasks.entity.PatientDTO;
+import ru.spb.reshenie.javatasks.entity.Patient;
 
 
-public class FullnameTableCell extends TableCell<PatientDTO, String > {
+public class FullnameTableCell extends TableCell<Patient, String > {
     @Override
     protected void updateItem(String item, boolean empty) {
         super.updateItem(item, empty);

@@ -18,13 +18,13 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private PatientOverviewPanel controller;
+    private static String dbURL;
 
     public static void main(String[] args) {
-        DbConnector dbConnector = DbConnector.getInstance();
         if (args.length == 1) {
-            dbConnector.setDbURL(args[0]);
+            dbURL = args[0];
         } else if (args.length > 1) {
-            dbConnector.setDbURL(args[1]);
+            dbURL = args[1];
         }
         launch(args);
 
@@ -39,12 +39,6 @@ public class MainApp extends Application {
         showSignInPanel();
 
         showPatientOverview();
-
-        loadPatientsFromDb();
-    }
-
-    private void loadPatientsFromDb() {
-        controller.loadPatientsFromDb();
     }
 
     private void showSignInPanel() {
@@ -63,6 +57,7 @@ public class MainApp extends Application {
 
             SignInPanel controller = loader.getController();
             controller.setSignInPanelStage(signInStage);
+            controller.setDbURL(dbURL);
 
             signInStage.showAndWait();
         } catch (IOException e) {

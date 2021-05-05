@@ -1,29 +1,32 @@
 package ru.spb.reshenie.javatasks.entity;
 
-import java.util.Date;
+import javafx.beans.property.*;
 
 public class Patient {
     private long id;
-    private String fio;
-    private Date birth_date;
-    private int sex;
-    private int num;
-    private String smo;
-    private String snils;
-    private String policy;
-    private int fin_source;
+    private StringProperty cardNumber;
+    private StringProperty snils;
+    private StringProperty sex;
+    private StringProperty fullname;
+    private StringProperty birthday;
+    private StringProperty age;
+    private StringProperty policy;
+    private IntegerProperty finSource;
 
-    public Patient(long id, String fio, Date birth_date, int sex, int num,
-                   String smo, String snils, String policy, int fin_source) {
+    public Patient() {
+
+    }
+
+    public Patient(long id, Integer cardNumber, String snils, String sex, String fullname, String birthday, String age, String policy, Integer finSource) {
         this.id = id;
-        this.fio = fio;
-        this.birth_date = birth_date;
-        this.sex = sex;
-        this.num = num;
-        this.smo = smo;
-        this.snils = snils;
-        this.policy = policy;
-        this.fin_source = fin_source;
+        this.cardNumber = new SimpleStringProperty(cardNumber.toString());
+        this.snils = new SimpleStringProperty(snils);
+        this.sex = new SimpleStringProperty(sex);
+        this.fullname = new SimpleStringProperty(fullname);
+        this.birthday = new SimpleStringProperty(birthday);
+        this.age = new SimpleStringProperty(age);
+        this.policy = new SimpleStringProperty(policy);
+        this.finSource = new SimpleIntegerProperty(finSource);
     }
 
     public long getId() {
@@ -34,67 +37,99 @@ public class Patient {
         this.id = id;
     }
 
-    public String getFio() {
-        return fio;
+    public String getCardNumber() {
+        return cardNumber.get();
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
+    public StringProperty cardNumberProperty() {
+        return cardNumber;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
-    }
-
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-    public String getSmo() {
-        return smo;
-    }
-
-    public void setSmo(String smo) {
-        this.smo = smo;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber.set(cardNumber);
     }
 
     public String getSnils() {
+        return snils.get();
+    }
+
+    public StringProperty snilsProperty() {
         return snils;
     }
 
     public void setSnils(String snils) {
-        this.snils = snils;
+        this.snils.set(snils);
+    }
+
+    public String getSex() {
+        return sex.get();
+    }
+
+    public StringProperty sexProperty() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex.set(sex);
+    }
+
+    public String getFullname() {
+        return fullname.get();
+    }
+
+    public StringProperty fullnameProperty() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname.set(fullname);
+    }
+
+    public String getBirthday() {
+        return birthday.get();
+    }
+
+    public StringProperty birthdayProperty() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday.set(birthday);
+    }
+
+    public String getAge() {
+        return age.get();
+    }
+
+    public StringProperty ageProperty() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age.set(age);
     }
 
     public String getPolicy() {
+        return policy.get();
+    }
+
+    public StringProperty policyProperty() {
         return policy;
     }
 
     public void setPolicy(String policy) {
-        this.policy = policy;
+        this.policy.set(policy);
     }
 
-    public int getFin_source() {
-        return fin_source;
+    public Integer getFinSource() {
+        return finSource.get();
     }
 
-    public void setFin_source(int fin_source) {
-        this.fin_source = fin_source;
+    public IntegerProperty finSourceProperty() {
+        return finSource;
+    }
+
+    public void setFinSource(Integer finSource) {
+        this.finSource.set(finSource);
     }
 }

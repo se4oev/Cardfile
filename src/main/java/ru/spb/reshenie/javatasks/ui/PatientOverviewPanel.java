@@ -3,17 +3,13 @@ package ru.spb.reshenie.javatasks.ui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.db.PatientDao;
-import ru.spb.reshenie.javatasks.entity.PatientDTO;
-import ru.spb.reshenie.javatasks.utils.MappingUtil;
-
+import ru.spb.reshenie.javatasks.entity.Patient;
 
 public class PatientOverviewPanel {
 
@@ -24,31 +20,31 @@ public class PatientOverviewPanel {
     private TextField searchField;
 
     @FXML
-    private TableView<PatientDTO> patientTable;
+    private TableView<Patient> patientTable;
 
     @FXML
-    private TableColumn<PatientDTO, String> cardNumberColumn;
+    private TableColumn<Patient, String> cardNumberColumn;
 
     @FXML
-    private TableColumn<PatientDTO, String> snilsColumn;
+    private TableColumn<Patient, String> snilsColumn;
 
     @FXML
-    private TableColumn<PatientDTO, String> sexColumn;
+    private TableColumn<Patient, String> sexColumn;
 
     @FXML
-    private TableColumn<PatientDTO, String> fullnameColumn;
+    private TableColumn<Patient, String> fullnameColumn;
 
     @FXML
-    private TableColumn<PatientDTO, String> birthdayColumn;
+    private TableColumn<Patient, String> birthdayColumn;
 
     @FXML
-    private TableColumn<PatientDTO, String> ageColumn;
+    private TableColumn<Patient, String> ageColumn;
 
     @FXML
-    private TableColumn<PatientDTO, String> policyColumn;
+    private TableColumn<Patient, String> policyColumn;
 
     @FXML
-    private TableColumn<PatientDTO, Integer> finSourceColumn;
+    private TableColumn<Patient, Integer> finSourceColumn;
 
     @FXML
     private Button btnSearch;
@@ -56,9 +52,9 @@ public class PatientOverviewPanel {
     @FXML
     private Button btnClear;
 
-    private ObservableList<PatientDTO> listOfPatients;
+    private ObservableList<Patient> listOfPatients;
 
-    private PatientDTO selectedPatient;
+    private Patient selectedPatient;
     private int selectedIndex;
 
     public PatientOverviewPanel() {
@@ -72,18 +68,6 @@ public class PatientOverviewPanel {
             if (newValue == null || newValue.trim().isEmpty()) {
                 patientTable.setItems(listOfPatients);
             }
-        });
-
-        initButton(btnSearch, event -> {
-            if (event.isPrimaryButtonDown())
-                if (searchField.getText().length() > 0)
-                    handleSearch();
-        });
-
-        initButton(btnClear, event -> {
-            if (event.isPrimaryButtonDown())
-                if (searchField.getText().length() > 0)
-                    handleClear();
         });
 
         patientTable.setRowFactory((param) -> new ColorRow());
@@ -124,16 +108,15 @@ public class PatientOverviewPanel {
                 handleSearch();
             }
         });
-    }
 
-    private void initButton(Button button, EventHandler<MouseEvent> handler) {
-        button.addEventFilter(MouseEvent.MOUSE_PRESSED, handler);
+        loadPatientsFromDb();
     }
 
     public void loadPatientsFromDb() {
 
         PatientDao patientDao = new PatientDao(DbConnector.getInstance().getConnection());
-        listOfPatients = FXCollections.observableArrayList(MappingUtil.mapToPatientDTOList(patientDao.getAll()));
+
+        listOfPatients = FXCollections.observableArrayList(patientDao.getAll());
         patientTable.setItems(listOfPatients);
         if (selectedPatient != null) {
             if (patientTable.getItems().contains(selectedPatient)) {
@@ -161,46 +144,49 @@ public class PatientOverviewPanel {
 
     @FXML
     public void handleSearch() {
-        String[] searchQuery = searchField.getText().split(" ");
-        FilteredList<PatientDTO> filteredData = new FilteredList<>(listOfPatients, p -> true);
-        filteredData.setPredicate(patient -> {
-            if (searchQuery.length == 0) {
-                return true;
-            }
-
-            for (String s : searchQuery) {
-                String lowerCaseFilter = s.toLowerCase();
-                if (patient.getFullname().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (patient.getPolicy().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (patient.getCardNumber().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (patient.getSnils().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (patient.getSex().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (patient.getBirthday().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (patient.getAge().contains(lowerCaseFilter)) {
+        if (searchField.getText().length() > 0) {
+            String[] searchQuery = searchField.getText().split(" ");
+            FilteredList<Patient> filteredData = new FilteredList<>(listOfPatients, p -> true);
+            filteredData.setPredicate(patient -> {
+                if (searchQuery.length == 0) {
                     return true;
                 }
-            }
 
-            return false;
-        });
+                for (String s : searchQuery) {
+                    String lowerCaseFilter = s.toLowerCase();
+                    if (patient.getFullname().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (patient.getPolicy().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (patient.getCardNumber().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (patient.getSnils().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (patient.getSex().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (patient.getBirthday().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (patient.getAge().contains(lowerCaseFilter)) {
+                        return true;
+                    }
+                }
 
-        setPatientItems(filteredData);
+                return false;
+            });
 
+            setPatientItems(filteredData);
+        }
     }
 
     @FXML
     public void handleClear() {
-        searchField.clear();
-        setPatientItems(listOfPatients);
+        if (searchField.getText().length() > 0) {
+            searchField.clear();
+            setPatientItems(listOfPatients);
+        }
     }
 
-    private void setPatientItems(ObservableList<PatientDTO> listOfPatients) {
+    private void setPatientItems(ObservableList<Patient> listOfPatients) {
         patientTable.setItems(listOfPatients);
         if(selectedPatient != null) {
             if(patientTable.getItems().contains(selectedPatient)) {
