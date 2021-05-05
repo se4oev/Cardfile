@@ -6,15 +6,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import ru.spb.reshenie.javatasks.db.DbConnector;
+import ru.spb.reshenie.javatasks.MainApp;
 import ru.spb.reshenie.javatasks.db.IBaseDao;
 import ru.spb.reshenie.javatasks.db.PatientDao;
-import ru.spb.reshenie.javatasks.db.PgDao;
 
 public class SignInPanel {
 
     private Stage signInStage;
     private String dbURL;
+    private MainApp mainApp;
 
     public void setDbURL(String dbURL) {
         this.dbURL = dbURL;
@@ -34,7 +34,8 @@ public class SignInPanel {
 
         PatientDao patientDao = new PatientDao(dbURL, userField.getText(), passwordField.getText());
 
-        if (dbConnector.getConnection() != null) {
+        if (patientDao.getConnection() != null) {
+            mainApp.setPatientDao(patientDao);
             signInStage.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -53,5 +54,9 @@ public class SignInPanel {
 
     public void setSignInPanelStage(Stage signInStage) {
         this.signInStage = signInStage;
+    }
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 }

@@ -8,14 +8,34 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientDao{
+public class PatientDao implements IBaseDao {
     private Connection connection;
+    private static final String DB_DRIVER = "org.postgresql.Driver";
+    private static final String dbType = "jdbc:postgresql://";
+    private String dbURL;
+    private String dbUser;
+    private String dbPassword;
 
-    public PatientDao(Connection connection) {
-        this.connection = connection;
+    public Connection getConnection() {
+        return connection;
     }
 
-    public PatientDao(String dbURL, String text, String text1) {
+    public PatientDao(String dbURL, String dbUser, String dbPassword) {
+        System.out.println("Конструктор пациентДАО");
+        this.dbURL = dbType + dbURL;
+        this.dbUser = dbUser;
+        this.dbPassword = dbPassword;
+        System.out.println(this.dbURL);
+        System.out.println(this.dbUser);
+        System.out.println(this.dbPassword);
+        try {
+            Class.forName(DB_DRIVER);
+            System.out.println("Класс фор нэйм");
+            connection = DriverManager.getConnection(this.dbURL, this.dbUser, this.dbPassword);
+            System.out.println("Попытка конекшна");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Patient> getAll() {

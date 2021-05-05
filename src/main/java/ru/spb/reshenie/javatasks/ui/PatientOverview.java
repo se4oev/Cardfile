@@ -7,11 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import ru.spb.reshenie.javatasks.db.DbConnector;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.entity.Patient;
 
-public class PatientOverviewPanel {
+public class PatientOverview {
+
+    private PatientDao patientDao;
 
     @FXML
     private AnchorPane rootPane;
@@ -57,8 +58,8 @@ public class PatientOverviewPanel {
     private Patient selectedPatient;
     private int selectedIndex;
 
-    public PatientOverviewPanel() {
-
+    public PatientOverview(PatientDao patientDao) {
+        this.patientDao = patientDao;
     }
 
     @FXML
@@ -113,8 +114,6 @@ public class PatientOverviewPanel {
     }
 
     public void loadPatientsFromDb() {
-
-        PatientDao patientDao = new PatientDao(DbConnector.getInstance().getConnection());
 
         listOfPatients = FXCollections.observableArrayList(patientDao.getAll());
         patientTable.setItems(listOfPatients);
@@ -203,5 +202,9 @@ public class PatientOverviewPanel {
                 patientTable.getSelectionModel().select(0);
             }
         }
+    }
+
+    public AnchorPane getRootPane() {
+        return rootPane;
     }
 }

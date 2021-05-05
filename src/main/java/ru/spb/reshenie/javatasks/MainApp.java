@@ -7,17 +7,25 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ru.spb.reshenie.javatasks.ui.PatientOverviewPanel;
+import ru.spb.reshenie.javatasks.db.IBaseDao;
+import ru.spb.reshenie.javatasks.db.PatientDao;
+import ru.spb.reshenie.javatasks.ui.PatientOverview;
 import ru.spb.reshenie.javatasks.ui.SignInPanel;
 import ru.spb.reshenie.javatasks.utils.ImageUtil;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class MainApp extends Application {
 
     private Stage primaryStage;
-    private PatientOverviewPanel controller;
     private static String dbURL;
+    private PatientDao patientDao;
+
+    public void setPatientDao(PatientDao patientDao) {
+        this.patientDao = patientDao;
+    }
 
     public static void main(String[] args) {
         if (args.length == 1) {
@@ -57,6 +65,7 @@ public class MainApp extends Application {
             SignInPanel controller = loader.getController();
             controller.setSignInPanelStage(signInStage);
             controller.setDbURL(dbURL);
+            controller.setMainApp(this);
 
             signInStage.showAndWait();
         } catch (IOException e) {
@@ -66,16 +75,27 @@ public class MainApp extends Application {
 
     public void showPatientOverview() {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("ui/PatientOverviewPanel.fxml"));
-            AnchorPane patientOverview = (AnchorPane) loader.load();
-            Scene scene = new Scene(patientOverview);
+            PatientOverview patientOverview = new PatientOverview(patientDao);
+            patientOverview = loadMainPane(patientOverview);
+            Scene scene = new Scene(patientOverview.getRootPane());
             primaryStage.setScene(scene);
 
-            controller = loader.getController();
             primaryStage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private PatientOverview loadMainPane(PatientOverview patientOverview) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        if (patientOverview != null)
+            fxmlLoader.setControllerFactory(param -> patientOverview);
+        String resourcePath = "/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml";
+        URL url = Objects.requireNonNull(PatientOverview.class.getResource(resourcePath), "Resource not found: " + resourcePath);
+        fxmlLoader.setLocation(url);
+        if(patientOverview == null || patientOverview.getRootPane() == null)
+            throw new RuntimeException("Панель не найдена");
+        patientOverview.getRootPane().getProperties().put(new Object(), patientOverview);
+        return fxmlLoader.getController();
     }
 }
