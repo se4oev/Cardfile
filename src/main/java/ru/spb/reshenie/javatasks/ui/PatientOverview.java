@@ -47,12 +47,6 @@ public class PatientOverview {
     @FXML
     private TableColumn<Patient, Integer> finSourceColumn;
 
-    @FXML
-    private Button btnSearch;
-
-    @FXML
-    private Button btnClear;
-
     private ObservableList<Patient> listOfPatients;
 
     private Patient selectedPatient;
@@ -114,8 +108,12 @@ public class PatientOverview {
     }
 
     public void loadPatientsFromDb() {
-
         listOfPatients = FXCollections.observableArrayList(patientDao.getAll());
+        setPatients(listOfPatients);
+
+    }
+
+    private void setPatients(ObservableList<Patient> listOfPatients) {
         patientTable.setItems(listOfPatients);
         if (selectedPatient != null) {
             if (patientTable.getItems().contains(selectedPatient)) {
@@ -132,7 +130,6 @@ public class PatientOverview {
                 patientTable.getSelectionModel().select(0);
             }
         }
-
     }
 
     @FXML
@@ -173,7 +170,7 @@ public class PatientOverview {
                 return false;
             });
 
-            setPatientItems(filteredData);
+            setPatients(filteredData);
         }
     }
 
@@ -181,26 +178,7 @@ public class PatientOverview {
     public void handleClear() {
         if (searchField.getText().length() > 0) {
             searchField.clear();
-            setPatientItems(listOfPatients);
-        }
-    }
-
-    private void setPatientItems(ObservableList<Patient> listOfPatients) {
-        patientTable.setItems(listOfPatients);
-        if(selectedPatient != null) {
-            if(patientTable.getItems().contains(selectedPatient)) {
-                patientTable.getSelectionModel().select(selectedPatient);
-            } else {
-                if(patientTable.getItems().size() >= selectedIndex)
-                    patientTable.getSelectionModel().select(selectedIndex);
-                else
-                    patientTable.getSelectionModel().select(0);
-
-            }
-        } else {
-            if (patientTable.getItems() != null && patientTable.getItems().size() > 0) {
-                patientTable.getSelectionModel().select(0);
-            }
+            setPatients(listOfPatients);
         }
     }
 

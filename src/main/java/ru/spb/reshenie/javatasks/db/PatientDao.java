@@ -25,15 +25,16 @@ public class PatientDao {
                 String fio = resultSet.getString("fio");
 
                 String[] birthDay = resultSet.getDate("birth_date").toString().split("-");
-                LocalDate birthDate = LocalDate.of(Integer.parseInt(birthDay[0]), Integer.parseInt(birthDay[1]), Integer.parseInt(birthDay[2]));
+                LocalDate birthDate = LocalDate.of(Integer.parseInt(birthDay[0]),
+                    Integer.parseInt(birthDay[1]), Integer.parseInt(birthDay[2]));
 
                 int sex = resultSet.getInt("sex");
                 int num = resultSet.getInt("num");
                 String smo = resultSet.getString("smo");
                 String snils = resultSet.getString("snils");
                 String policy = resultSet.getString("policy");
-                int fin_source = resultSet.getInt("fin_source");
-                PatientMapper mapper = new PatientMapper(id, fio, birthDate, sex, num, smo, snils, policy, fin_source);
+                int finSource = resultSet.getInt("fin_source");
+                PatientMapper mapper = new PatientMapper(id, fio, birthDate, sex, num, smo, snils, policy, finSource);
 
                 listOfPatient.add(mapper.getPatient());
             }

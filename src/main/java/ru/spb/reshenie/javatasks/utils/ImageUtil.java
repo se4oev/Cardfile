@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 public class ImageUtil {
 
     private static final String iconsPath = '/' +
-            ImageUtil.class.getPackage().getName().replace('.', '/') + '/';
+        ImageUtil.class.getPackage().getName().replace('.', '/') + '/';
 
     public static Image getFinSourceImage(Integer numOfIcon) {
         if (numOfIcon == 1) {
@@ -23,9 +23,7 @@ public class ImageUtil {
         return new Image(path);
     }
 
-    public static Image cardfileImage = new Image('/' +
-            ImageUtil.class.getPackage().getName().replace('.', '/') +
-            '/' + "cardfile_icon.png");
+    public static Image cardfileImage = new Image(iconsPath + "cardfile_icon.png");
 
 
 }

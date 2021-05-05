@@ -2,25 +2,26 @@ package ru.spb.reshenie.javatasks.utils;
 
 import ru.spb.reshenie.javatasks.entity.Patient;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
 import java.util.Locale;
 
 public class PatientMapper {
-    private Patient patient;
+    private final Patient patient;
 
-    public PatientMapper(long id, String fio, LocalDate birthDate, int sex, int num, String smo, String snils, String policy, int finSource) {
+    public PatientMapper(long id, String fio, LocalDate birthDate, int sex, int num,
+                         String smo, String snils, String policy, int finSource) {
         String snilsFormat = snilsFormat(snils);
         String sexString = sexFormat(sex);
         String birthday = birthdayFormat(birthDate);
         String age = ageFormat(birthDate);
         String policyFormat = policyFormat(smo, policy);
-        patient = new Patient(id, num, snilsFormat, sexString, fio, birthday, age, policyFormat, finSource);
+        patient = new Patient(
+            id, num, snilsFormat, sexString, fio,
+            birthday, age, policyFormat, finSource
+        );
     }
 
     public Patient getPatient() {
@@ -70,14 +71,14 @@ public class PatientMapper {
     private String appendYearsName(int years) {
         String output = "";
         if (years >= 10 && years <= 20) {
-            output = String.valueOf(years) + " лет";
+            output = years + " лет";
         } else if (years % 10 == 0 || years % 10 == 5 || years % 10 == 6 || years % 10 == 7 ||
                 years % 10 == 8 || years % 10 == 9) {
-            output = String.valueOf(years) + " лет";
+            output = years + " лет";
         } else if (years % 10 == 1) {
-            output = String.valueOf(years) + " год";
+            output = years + " год";
         } else if (years % 10 == 2 || years % 10 == 3 || years % 10 == 4) {
-            output = String.valueOf(years) + " года";
+            output = years + " года";
         }
         return output;
     }

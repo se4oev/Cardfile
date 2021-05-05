@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.Objects;
 
 public class MainApp extends Application {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(MainApp.class);
     private Stage primaryStage;
     private static String dbURL;
     private IBaseDao baseDao;
@@ -94,7 +94,8 @@ public class MainApp extends Application {
             fxmlLoader.setControllerFactory(param -> patientOverview);
         try {
             String resourcePath = "/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml";
-            URL url = Objects.requireNonNull(PatientOverview.class.getResource(resourcePath), "Resource not found: " + resourcePath);
+            URL url = Objects.requireNonNull(PatientOverview.class.getResource(resourcePath),
+                "Resource not found: " + resourcePath);
             fxmlLoader.setLocation(url);
             fxmlLoader.load();
         } catch (IOException e) {
