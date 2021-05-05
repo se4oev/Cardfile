@@ -7,7 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.spb.reshenie.javatasks.MainApp;
+import ru.spb.reshenie.javatasks.db.IBaseDao;
 import ru.spb.reshenie.javatasks.db.PatientDao;
+import ru.spb.reshenie.javatasks.db.PgDao;
 
 public class SignInPanel {
 
@@ -31,10 +33,10 @@ public class SignInPanel {
     @FXML
     private void handleConnect() {
 
-        PatientDao patientDao = new PatientDao(dbURL, userField.getText(), passwordField.getText());
+        IBaseDao pgDao = new PgDao(dbURL, userField.getText(), passwordField.getText());
 
-        if (patientDao.getConnection() != null) {
-            mainApp.setPatientDao(patientDao);
+        if (pgDao.getConnection() != null) {
+            mainApp.setBaseDao(pgDao);
             signInStage.close();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

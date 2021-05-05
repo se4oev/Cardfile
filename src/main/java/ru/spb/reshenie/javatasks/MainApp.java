@@ -7,6 +7,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.spb.reshenie.javatasks.db.IBaseDao;
 import ru.spb.reshenie.javatasks.db.PatientDao;
 import ru.spb.reshenie.javatasks.ui.PatientOverview;
 import ru.spb.reshenie.javatasks.ui.SignInPanel;
@@ -17,13 +20,13 @@ import java.net.URL;
 import java.util.Objects;
 
 public class MainApp extends Application {
-
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private Stage primaryStage;
     private static String dbURL;
-    private PatientDao patientDao;
+    private IBaseDao baseDao;
 
-    public void setPatientDao(PatientDao patientDao) {
-        this.patientDao = patientDao;
+    public void setBaseDao(IBaseDao baseDao) {
+        this.baseDao = baseDao;
     }
 
     public static void main(String[] args) {
@@ -33,17 +36,17 @@ public class MainApp extends Application {
             dbURL = args[1];
         }
         launch(args);
-
     }
 
     @Override
     public void start(Stage primaryStage) {
+        logger.info("Application started...");
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Картотека");
         this.primaryStage.getIcons().add(ImageUtil.cardfileImage);
-
+        logger.info("Show sign in window");
         showSignInPanel();
-
+        logger.info("Login successfull, show patient overview");
         showPatientOverview();
     }
 
@@ -74,7 +77,7 @@ public class MainApp extends Application {
 
     public void showPatientOverview() {
         try {
-            PatientOverview patientOverview = new PatientOverview(patientDao);
+            PatientOverview patientOverview = new PatientOverview(new PatientDao(baseDao));
             patientOverview = loadMainPane(patientOverview);
             Scene scene = new Scene(patientOverview.getRootPane());
             primaryStage.setScene(scene);
@@ -89,9 +92,14 @@ public class MainApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         if (patientOverview != null)
             fxmlLoader.setControllerFactory(param -> patientOverview);
-        String resourcePath = "/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml";
-        URL url = Objects.requireNonNull(PatientOverview.class.getResource(resourcePath), "Resource not found: " + resourcePath);
-        fxmlLoader.setLocation(url);
+        try {
+            String resourcePath = "/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml";
+            URL url = Objects.requireNonNull(PatientOverview.class.getResource(resourcePath), "Resource not found: " + resourcePath);
+            fxmlLoader.setLocation(url);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(patientOverview == null || patientOverview.getRootPane() == null)
             throw new RuntimeException("Панель не найдена");
         patientOverview.getRootPane().getProperties().put(new Object(), patientOverview);

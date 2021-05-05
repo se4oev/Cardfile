@@ -6,6 +6,5 @@ import java.sql.Connection;
 import java.util.List;
 
 public interface IBaseDao {
-    List<Patient> getAll();
     Connection getConnection();
 }
