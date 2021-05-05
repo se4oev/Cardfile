@@ -67,7 +67,7 @@ public class MainApp extends Application {
     public void showPatientOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("ui/PatientOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("ui/PatientOverviewPanel.fxml"));
             AnchorPane patientOverview = (AnchorPane) loader.load();
             Scene scene = new Scene(patientOverview);
             primaryStage.setScene(scene);
