@@ -1,0 +1,26 @@
+05.05.2021 21:40:04.550 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 21:40:04.555 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 21:40:04.591 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 21:40:04.617 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 21:40:08.961 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 21:40:09.140 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 21:40:09.140 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 21:40:09.167 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 21:40:09.307 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 21:40:09.312 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 21:40:09.318 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 21:40:09.363 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Query execute successful. Number of patients 20
+05.05.2021 21:40:50.212 [main] INFO   r.s.r.j.MainApp - Application started...
+05.05.2021 21:40:50.215 [main] INFO   r.s.r.j.MainApp - Received argument: localhost:5432/testbase
+05.05.2021 21:40:50.248 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Launch start method
+05.05.2021 21:40:50.275 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Show sign in window
+05.05.2021 21:40:54.640 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Try to connect DB...
+05.05.2021 21:40:54.820 [JavaFX Application Thread] INFO   r.s.r.j.db.PgDao - Connect successful
+05.05.2021 21:40:54.820 [JavaFX Application Thread] INFO   r.s.r.j.u.SignInPanel - Connection successful, closed signInStage
+05.05.2021 21:40:54.843 [JavaFX Application Thread] INFO   r.s.r.j.MainApp - Login successfull, show patient overview
+05.05.2021 21:40:54.981 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Initialize main panel
+05.05.2021 21:40:54.985 [JavaFX Application Thread] INFO   r.s.r.j.u.PatientOverview - Main panel initialize. Trying to load patients.
+05.05.2021 21:40:54.990 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 21:40:55.030 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Query execute successful. Number of patients 20
+05.05.2021 21:41:02.168 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Trying to execute query...
+05.05.2021 21:41:02.177 [JavaFX Application Thread] INFO   r.s.r.j.d.PatientDao - Query execute successful. Number of patients 20

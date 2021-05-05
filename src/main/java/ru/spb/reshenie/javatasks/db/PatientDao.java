@@ -1,5 +1,7 @@
 package ru.spb.reshenie.javatasks.db;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spb.reshenie.javatasks.entity.Patient;
 import ru.spb.reshenie.javatasks.utils.PatientMapper;
 
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientDao {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private final IBaseDao baseDao;
 
     public PatientDao(IBaseDao baseDao) {
@@ -19,6 +22,7 @@ public class PatientDao {
         List<Patient> listOfPatient = new ArrayList<>();
         ResultSet resultSet;
         try (Statement statement = baseDao.getConnection().createStatement()) {
+            logger.info("Trying to execute query...");
             resultSet = statement.executeQuery("SELECT * FROM java_tasks_patient ORDER BY id DESC");
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
@@ -38,8 +42,10 @@ public class PatientDao {
 
                 listOfPatient.add(mapper.getPatient());
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            logger.info("Query execute successful. Number of patients {}", listOfPatient.size());
+        } catch (SQLException e) {
+            logger.error("Failed to execute query", e);
+            throw new RuntimeException(e);
         }
         return listOfPatient;
     }

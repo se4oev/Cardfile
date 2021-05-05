@@ -84,6 +84,7 @@ public class MainApp extends Application {
             PatientOverview patientOverview = new PatientOverview(new PatientDao(baseDao));
             patientOverview = loadMainPane(patientOverview);
             Scene scene = new Scene(patientOverview.getRootPane());
+            scene.getStylesheets().addAll(MainApp.class.getResource("/ru/spb/reshenie/javatasks/styles.css").toExternalForm());
             primaryStage.setScene(scene);
 
             primaryStage.show();

@@ -63,7 +63,7 @@ public class PatientOverview {
 
     @FXML
     public void initialize() {
-
+        logger.info("Initialize main panel");
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null || newValue.trim().isEmpty()) {
                 patientTable.setItems(listOfPatients);
@@ -78,28 +78,21 @@ public class PatientOverview {
         });
 
         cardNumberColumn.setCellValueFactory(cellData -> cellData.getValue().cardNumberProperty());
-        cardNumberColumn.setStyle("-fx-alignment: CENTER");
 
         snilsColumn.setCellValueFactory(cellData -> cellData.getValue().snilsProperty());
-        snilsColumn.setStyle("-fx-alignment: CENTER");
 
         sexColumn.setCellValueFactory(cellData -> cellData.getValue().sexProperty());
-        sexColumn.setStyle("-fx-alignment: CENTER");
 
         fullnameColumn.setCellValueFactory(cellData -> cellData.getValue().fullnameProperty());
-        fullnameColumn.setCellFactory(column -> new FullnameTableCell());
 
         birthdayColumn.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
-        birthdayColumn.setStyle("-fx-alignment: CENTER");
 
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty());
-        ageColumn.setStyle("-fx-alignment: CENTER");
 
         policyColumn.setCellValueFactory(cellData -> cellData.getValue().policyProperty());
 
         finSourceColumn.setCellValueFactory(cellData -> cellData.getValue().finSourceProperty().asObject());
         finSourceColumn.setCellFactory(column -> new ImageTableCell());
-        finSourceColumn.setStyle("-fx-alignment: CENTER");
 
         rootPane.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
@@ -108,7 +101,7 @@ public class PatientOverview {
                 handleSearch();
             }
         });
-
+        logger.info("Main panel initialize. Trying to load patients.");
         loadPatientsFromDb();
     }
 
