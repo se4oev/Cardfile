@@ -50,7 +50,7 @@ public class MainApp extends Application {
         this.primaryStage.getIcons().add(ImageUtil.cardfileImage);
         logger.info("Show sign in window");
         showSignInPanel();
-        logger.info("Login successfull, show patient overview");
+        logger.info("Login successful, show patient overview");
         showPatientOverview();
     }
 
@@ -62,14 +62,14 @@ public class MainApp extends Application {
             logger.info("Connection closed successful");
         } catch (SQLException e) {
             logger.error("Failed to close connection", e);
-            throw new RuntimeException(e);
         }
     }
 
     private void showSignInPanel() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("ui/SignInPanel.fxml"));
+            String signInPanelPath = "ui/SignInPanel.fxml";
+            loader.setLocation(MainApp.class.getResource(signInPanelPath));
             AnchorPane pane = loader.load();
 
             Stage signInStage = new Stage();
@@ -88,7 +88,6 @@ public class MainApp extends Application {
             signInStage.showAndWait();
         } catch (IOException e) {
             logger.error("Failed to start sign in panel", e);
-            throw new RuntimeException(e);
         }
     }
 
@@ -98,7 +97,8 @@ public class MainApp extends Application {
             patientOverview = loadMainPane(patientOverview);
             Scene scene = new Scene(patientOverview.getRootPane());
             String styleSheetPath = "/ru/spb/reshenie/javatasks/styles.css";
-            scene.getStylesheets().addAll(MainApp.class.getResource(styleSheetPath).toExternalForm());
+            scene.getStylesheets().addAll(Objects.requireNonNull(
+                    MainApp.class.getResource(styleSheetPath)).toExternalForm());
             primaryStage.setScene(scene);
 
             primaryStage.show();

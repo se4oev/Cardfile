@@ -9,3 +9,12 @@
 #woman {
     -fx-background-color: rgba(240, 128, 128, 0.2);
 }
+
+#selected-row {
+    -fx-background-color: rgba(33, 165, 209, 1.0);
+}
+
+#fio-cell {
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER-LEFT;
+}

@@ -22,7 +22,7 @@ public class ColorRow extends TableRow<Patient> {
     public void updateSelected(boolean selected) {
         super.updateSelected(selected);
         if(isSelected()) {
-            setStyle("-fx-background-color: rgba(33, 165, 209, 1.0)");
+            this.setId("selected-row");
         } else {
             getTableView().refresh();
         }

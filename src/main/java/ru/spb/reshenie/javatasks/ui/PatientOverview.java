@@ -86,6 +86,7 @@ public class PatientOverview {
         sexColumn.setCellValueFactory(cellData -> cellData.getValue().sexProperty());
 
         fullnameColumn.setCellValueFactory(cellData -> cellData.getValue().fullnameProperty());
+        fullnameColumn.setCellFactory(cellData -> new FullnameTableCell());
 
         birthdayColumn.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
 

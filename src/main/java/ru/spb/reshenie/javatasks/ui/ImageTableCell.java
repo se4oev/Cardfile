@@ -15,17 +15,16 @@ public class ImageTableCell extends TableCell<Patient, Integer> {
         if (item == null || empty) {
             setGraphic(null);
             setTooltip(null);
-        } else {
+        } else if (item >= 1 && item <= 3) {
             ImageView image = new ImageView(ImageUtil.getFinSourceImage(item));
             setGraphic(image);
             if (item == 1) {
                 setTooltip(new Tooltip("ОМС"));
             } else if (item == 2) {
                 setTooltip(new Tooltip("ДМС"));
-            } else if (item == 3) {
+            } else {
                 setTooltip(new Tooltip("Наличные"));
             }
-
         }
     }
 }

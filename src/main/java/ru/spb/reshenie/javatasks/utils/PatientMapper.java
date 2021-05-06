@@ -1,17 +1,12 @@
 package ru.spb.reshenie.javatasks.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.spb.reshenie.javatasks.entity.Patient;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Locale;
+import java.time.format.DateTimeFormatter;
 
 public class PatientMapper {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
     private final Patient patient;
 
     public PatientMapper(long id, String fio, LocalDate birthDate, int sex, int num,
@@ -52,13 +47,9 @@ public class PatientMapper {
     }
 
     private String birthdayFormat(LocalDate birthDate) {
-        java.util.Date simpleDateFormat = null;
-        try {
-            simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(birthDate.toString());
-        } catch (ParseException e) {
-            logger.error("Failed to parse date", e);
-        }
-        return new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).format(simpleDateFormat);
+        String pattern = "dd.MM.yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return birthDate.format(formatter);
     }
 
     private String ageFormat(LocalDate birthDate) {
