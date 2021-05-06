@@ -23,8 +23,12 @@ import java.util.Objects;
 public class MainApp extends Application {
     private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
     private Stage primaryStage;
-    private static String dbURL;
     private IBaseDao baseDao;
+    private static String dbURL;
+    private final String RESOURCE_PATH = "/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml";
+    private final String SIGN_IN_PANEL_PATH = "ui/SignInPanel.fxml";
+    private final String STYLES_PATH = "/ru/spb/reshenie/javatasks/styles.css";
+
 
     public void setBaseDao(IBaseDao baseDao) {
         this.baseDao = baseDao;
@@ -68,8 +72,7 @@ public class MainApp extends Application {
     private void showSignInPanel() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            String signInPanelPath = "ui/SignInPanel.fxml";
-            loader.setLocation(MainApp.class.getResource(signInPanelPath));
+            loader.setLocation(MainApp.class.getResource(SIGN_IN_PANEL_PATH));
             AnchorPane pane = loader.load();
 
             Stage signInStage = new Stage();
@@ -96,9 +99,8 @@ public class MainApp extends Application {
             PatientOverview patientOverview = new PatientOverview(new PatientDao(baseDao));
             patientOverview = loadMainPane(patientOverview);
             Scene scene = new Scene(patientOverview.getRootPane());
-            String styleSheetPath = "/ru/spb/reshenie/javatasks/styles.css";
             scene.getStylesheets().addAll(Objects.requireNonNull(
-                    MainApp.class.getResource(styleSheetPath)).toExternalForm());
+                    MainApp.class.getResource(STYLES_PATH)).toExternalForm());
             primaryStage.setScene(scene);
 
             primaryStage.show();
@@ -113,9 +115,8 @@ public class MainApp extends Application {
         if (patientOverview != null)
             fxmlLoader.setControllerFactory(param -> patientOverview);
         try {
-            String resourcePath = "/ru/spb/reshenie/javatasks/ui/PatientOverview.fxml";
-            URL url = Objects.requireNonNull(PatientOverview.class.getResource(resourcePath),
-                "Resource not found: " + resourcePath);
+            URL url = Objects.requireNonNull(PatientOverview.class.getResource(RESOURCE_PATH),
+                "Resource not found: " + RESOURCE_PATH);
             fxmlLoader.setLocation(url);
             fxmlLoader.load();
         } catch (IOException e) {
