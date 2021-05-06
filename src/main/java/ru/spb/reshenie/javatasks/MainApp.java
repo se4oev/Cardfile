@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class MainApp extends Application {
+
     private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
     private Stage primaryStage;
     private IBaseDao baseDao;
@@ -48,21 +49,23 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Launch start method");
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Картотека");
-        this.primaryStage.getIcons().add(ImageUtil.cardfileImage);
-        logger.info("Show sign in window");
+
+        logger.info("Launch start method, trying to show sign in window");
+
         showSignInPanel();
+
         logger.info("Login successful, show patient overview");
-        showPatientOverview();
+
+        showPatientOverview(primaryStage);
     }
 
     @Override
     public void stop() {
         try {
             logger.info("Trying to close connection");
+
             baseDao.getConnection().close();
+
             logger.info("Connection closed successful");
         } catch (SQLException e) {
             logger.error("Failed to close connection", e);
@@ -94,15 +97,21 @@ public class MainApp extends Application {
         }
     }
 
-    public void showPatientOverview() {
+    public void showPatientOverview(Stage primaryStage) {
+
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Картотека");
+        this.primaryStage.getIcons().add(ImageUtil.cardfileImage);
+
         try {
             PatientOverview patientOverview = new PatientOverview(new PatientDao(baseDao));
             patientOverview = loadMainPane(patientOverview);
+
             Scene scene = new Scene(patientOverview.getRootPane());
             scene.getStylesheets().addAll(Objects.requireNonNull(
                     MainApp.class.getResource(STYLES_PATH)).toExternalForm());
-            primaryStage.setScene(scene);
 
+            primaryStage.setScene(scene);
             primaryStage.show();
         } catch (Exception e) {
             logger.error("Failed to start patient overview", e);
@@ -112,8 +121,10 @@ public class MainApp extends Application {
 
     private PatientOverview loadMainPane(PatientOverview patientOverview) {
         FXMLLoader fxmlLoader = new FXMLLoader();
+
         if (patientOverview != null)
             fxmlLoader.setControllerFactory(param -> patientOverview);
+
         try {
             URL url = Objects.requireNonNull(PatientOverview.class.getResource(RESOURCE_PATH),
                 "Resource not found: " + RESOURCE_PATH);
@@ -123,11 +134,14 @@ public class MainApp extends Application {
             logger.error("Failed to load PatientOverview panel", e);
             throw new RuntimeException(e);
         }
+
         if(patientOverview == null || patientOverview.getRootPane() == null) {
             logger.error("Panel not found");
             throw new RuntimeException("Panel not found");
         }
+
         patientOverview.getRootPane().getProperties().put(new Object(), patientOverview);
+
         return fxmlLoader.getController();
     }
 }
