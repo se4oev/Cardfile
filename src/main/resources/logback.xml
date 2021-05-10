@@ -7,7 +7,7 @@
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>cardfile.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>10</maxHistory>
-            <totalSizeCap>10GB</totalSizeCap>
+            <totalSizeCap>1GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>%d{dd.MM.yyyy HH:mm:ss.SSS} [%thread] %-5level  %logger{20} - %msg%n</pattern>
